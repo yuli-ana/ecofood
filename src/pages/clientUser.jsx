@@ -1,5 +1,12 @@
-const User = () => {
-  return <p>user</p>;
+import ClientForm from "../components/ClientForm";
+
+const ClientUser = () => {
+  return (
+    <>
+      <h1>User</h1>
+      <ClientForm />;
+    </>
+  );
 };
 
-export default User;
+export default ClientUser;
