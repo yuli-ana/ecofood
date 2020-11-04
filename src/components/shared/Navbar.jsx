@@ -1,12 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const NavBar = () => {
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: "black",
+  },
+  button: {
+    color: "white",
+  },
+});
+
+const NavBar = ({ minimalNavbar }) => {
+  const classes = useStyles();
+
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/signin">Sign in</Link>
-      <Link to="/signup">Sign Up</Link>
-    </div>
+    <AppBar position="fixed" className={classes.root}>
+      <Toolbar>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          component={RouterLink}
+          to="/"
+        >
+          Home
+        </Button>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          component={RouterLink}
+          to="/signin"
+        >
+          Sign In
+        </Button>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          component={RouterLink}
+          to="/signup"
+        >
+          Sign Up
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 
