@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "json-server": "^0.16.2",
     "mongoose": "^5.10.11",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
@@ -26,7 +27,6 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon server/index.js",
-    "dev": "npm run server && npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,13 +43,13 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "http://localhost:3001",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.2.0",
