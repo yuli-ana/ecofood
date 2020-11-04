@@ -1,6 +1,6 @@
 import NavBar from "../components/shared/Navbar";
 
-const Menu = () => {
+const SearchRestaurants = () => {
   return (
     <>
       <NavBar />
@@ -8,4 +8,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default SearchRestaurants;
