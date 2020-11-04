@@ -3,7 +3,7 @@ import NavBar from "../components/shared/Navbar";
 const Menu = () => {
   return (
     <>
-      <NavBar />
+      <NavBar minimalNavbar />
     </>
   );
 };
