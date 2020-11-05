@@ -4,7 +4,7 @@ const SignIn = () => {
   return (
     <>
       <NavBar />
-      <div style={{ paddingTop: "100px" }}>Sign in</div>
+      <div style={{ paddingTop: "100px" }}>Sign In</div>
     </>
   );
 };
