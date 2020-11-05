@@ -7,10 +7,15 @@ import DishModal from "./components/menu/DishModal";
 import SingupRestaurant from "./components/home/signup/SingupRestaurant";
 import Menu from "./pages/menu";
 import SearchRestaurants from "./pages/searchRestaurants";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  spacing: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 16, 32, 64],
+});
 
 const App = () => {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Router>
         <Switch>
           <Route path="/modal" component={DishModal} />
@@ -23,7 +28,7 @@ const App = () => {
           <Route path="/" component={Home} />
         </Switch>
       </Router>
-    </>
+    </ThemeProvider>
   );
 };
 
