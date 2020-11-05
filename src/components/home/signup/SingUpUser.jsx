@@ -14,8 +14,13 @@ const useStyles = makeStyles((theme) => ({
   center: {
     minHeight: "100vh",
   },
-  margin: {
-    margin: theme.spacing(2),
+  padding: {
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+  button: {
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -33,6 +38,7 @@ const SignupUser = () => {
       justify="center"
       alignContent="center"
       className={classes.center}
+      spacing={3}
     >
       <Grid item>
         <form action="" onSubmit={handleSubmit(onSubmit)}>
@@ -43,9 +49,10 @@ const SignupUser = () => {
             variant="outlined"
             label="Email"
             fullWidth
+            className={classes.padding}
           />
           <Grid container justify="center">
-            <Grid item xs="5" className={classes.margin}>
+            <Grid item xs={6} className={classes.padding}>
               <InputLabel id="select-age">Age</InputLabel>
               <Select labelId="select-age" fullWidth>
                 <MenuItem value={10}>Ten</MenuItem>
@@ -53,7 +60,7 @@ const SignupUser = () => {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </Grid>
-            <Grid item xs="5" className={classes.margin}>
+            <Grid item xs={6} className={classes.padding}>
               <InputLabel id="select-gender">Gender</InputLabel>
               <Select labelId="select-gender" fullWidth>
                 <MenuItem value={"female"}>Female</MenuItem>
@@ -63,7 +70,7 @@ const SignupUser = () => {
             </Grid>
           </Grid>
           <TextField
-            className={classes.margin}
+            className={classes.padding}
             required
             inputRef={register}
             name="phone"
@@ -72,7 +79,7 @@ const SignupUser = () => {
             fullWidth
           />
           <TextField
-            className={classes.margin}
+            className={classes.padding}
             required
             inputRef={register}
             name="password"
@@ -83,12 +90,12 @@ const SignupUser = () => {
           <Typography
             color="primary"
             variant="body1"
-            className={classes.margin}
+            className={classes.padding}
           >
             Additional Information
           </Typography>
           <TextField
-            className={classes.margin}
+            className={classes.padding}
             required
             inputRef={register}
             name="weight"
@@ -97,7 +104,7 @@ const SignupUser = () => {
             fullWidth
           />
           <TextField
-            className={classes.margin}
+            className={classes.padding}
             required
             inputRef={register}
             name="height"
@@ -105,9 +112,19 @@ const SignupUser = () => {
             label="Height"
             fullWidth
           />
-          <Button type="submit" variant="outlined" color="primary">
-            Sign up
-          </Button>
+          <Grid container justify="center">
+            <Grid item>
+              <Button
+                type="submit"
+                variant="outlined"
+                color="primary"
+                size="large"
+                className={classes.button}
+              >
+                Sign up
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Grid>
     </Grid>
