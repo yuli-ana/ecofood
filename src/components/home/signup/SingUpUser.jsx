@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Button,
   TextField,
@@ -9,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useForm } from "react-hook-form";
+import userService from "../../../services/users";
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -26,10 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
 const SignupUser = () => {
   const classes = useStyles();
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    console.log("Submission starting", data);
+    const response = await userService.create(data);
+    console.log(response, "Submitting complete");
   };
 
   return (
@@ -43,14 +47,16 @@ const SignupUser = () => {
       <Grid item>
         <form action="" onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            required
-            inputRef={register}
+            inputRef={register({ required: true })}
             name="email"
             variant="outlined"
             label="Email"
             fullWidth
             className={classes.padding}
           />
+          {errors.name && errors.name.type === "required" && (
+            <div className="error">You must enter your name</div>
+          )}
           <Grid container justify="center">
             <Grid item xs={6} className={classes.padding}>
               <InputLabel id="select-age">Age</InputLabel>
