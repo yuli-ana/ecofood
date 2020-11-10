@@ -17,50 +17,30 @@ const NavBar = ({ signed }) => {
   return (
     <AppBar position="fixed" className={classes.root}>
       <Toolbar>
-        <Button
-          className={classes.button}
-          variant="outlined"
-          component={RouterLink}
-          to="/"
-        >
-          Home
-        </Button>
+        <NavLink to="/" text="home" />
         {!signed ? (
-          <Button
-            className={classes.button}
-            variant="outlined"
-            component={RouterLink}
-            to="/signin"
-          >
-            Sign In
-          </Button>
+          <NavLink to="/signin" text="sign in" />
         ) : (
-          <Button
-            className={classes.button}
-            variant="outlined"
-            component={RouterLink}
-            to="/"
-          >
-            Log out
-          </Button>
+          <NavLink to="/" text="log out" />
         )}
-        {!signed && (
-          <Button
-            className={classes.button}
-            variant="outlined"
-            component={RouterLink}
-            to="/signup"
-          >
-            Sign Up
-          </Button>
-        )}
+        {!signed && <NavLink to="/signup" text="sign up" />}
       </Toolbar>
     </AppBar>
   );
 };
 
-const navLink = () => {
-  return <Button></Button>;
+const NavLink = ({ to, text }) => {
+  const classes = useStyles();
+  return (
+    <Button
+      className={classes.button}
+      variant="outlined"
+      component={RouterLink}
+      to={to}
+    >
+      {text}
+    </Button>
+  );
 };
 
 export default NavBar;
