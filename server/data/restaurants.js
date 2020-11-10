@@ -1,6 +1,8 @@
+const uuid = require("uuid");
+
 const restaurants = [
   {
-    id: 283,
+    id: uuid.v4(),
     name: "Cora's Breakfast and Lunch",
     currency: "$",
     dishes: [
@@ -12,7 +14,7 @@ const restaurants = [
     ],
   },
   {
-    id: 382,
+    id: uuid.v4(),
     name: " LaVinia Restaurant",
     currency: "$",
     dishes: [

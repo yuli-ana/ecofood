@@ -1,36 +1,33 @@
 const express = require("express");
 const usersRouter = express.Router();
-// const users = require("../data/users");
+const uuid = require("uuid");
 
 let users = [
   {
-    id: 12345,
+    id: uuid.v4(),
     name: "David",
-    age: 23,
-    weight: 67,
-    height: 171,
+    email: "dv@gmail.com",
+    details: { age: 23, gender: "male", weight: 67, height: 171 },
+    password: 12345,
+    phone: 111222333,
   },
   {
-    id: 84584,
+    id: uuid.v4(),
     name: "Erica",
-    age: 18,
-    weight: 58,
-    height: 160,
+    email: "er@gmail.com",
+    details: { age: 18, gender: "female", weight: 58, height: 160 },
+    password: 54321,
+    phone: 999888777,
   },
   {
-    id: 56748,
+    id: uuid.v4(),
     name: "John",
-    age: 48,
-    weight: 78,
-    height: 164,
+    email: "jo@gmail.com",
+    details: { age: 48, gender: "male", weight: 78, height: 164 },
+    password: 19876,
+    phone: 666777444,
   },
 ];
-
-const generateId = () => {
-  const newId =
-    users.length > 0 ? Math.max(...users.map((note) => note.id)) : 0;
-  return newId + 1;
-};
 
 usersRouter.get("/", (req, res) => {
   res.json(users);
@@ -48,7 +45,8 @@ usersRouter.post("/", (req, res) => {
   console.log(body, " This is body");
 
   const user = {
-    id: generateId(),
+    id: uuid.v4(),
+    name: body.name,
     email: body.email,
     phone: body.phone,
     password: body.password,
