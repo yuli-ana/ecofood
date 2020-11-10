@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavBar = ({ minimalNavbar }) => {
+const NavBar = ({ signed }) => {
   const classes = useStyles();
 
   return (
@@ -25,25 +25,42 @@ const NavBar = ({ minimalNavbar }) => {
         >
           Home
         </Button>
-        <Button
-          className={classes.button}
-          variant="outlined"
-          component={RouterLink}
-          to="/signin"
-        >
-          Sign In
-        </Button>
-        <Button
-          className={classes.button}
-          variant="outlined"
-          component={RouterLink}
-          to="/signup"
-        >
-          Sign Up
-        </Button>
+        {!signed ? (
+          <Button
+            className={classes.button}
+            variant="outlined"
+            component={RouterLink}
+            to="/signin"
+          >
+            Sign In
+          </Button>
+        ) : (
+          <Button
+            className={classes.button}
+            variant="outlined"
+            component={RouterLink}
+            to="/"
+          >
+            Log out
+          </Button>
+        )}
+        {!signed && (
+          <Button
+            className={classes.button}
+            variant="outlined"
+            component={RouterLink}
+            to="/signup"
+          >
+            Sign Up
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
+};
+
+const navLink = () => {
+  return <Button></Button>;
 };
 
 export default NavBar;

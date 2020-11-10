@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/home";
 import SignIn from "./components/home/SignIn";
 import SignUp from "./components/home/signup/SignUp";
-import SingupUser from "./components/home/signup/SingupUser";
+import SignupUser from "./components/home/signup/SignupUser";
 import DishModal from "./components/menu/DishModal";
-import SingupRestaurant from "./components/home/signup/SingupRestaurant";
+import SignupRestaurant from "./components/home/signup/SignupRestaurant";
 import Menu from "./pages/menu";
 import SearchRestaurants from "./pages/searchRestaurants";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -20,8 +20,8 @@ const App = () => {
         <Switch>
           <Route path="/modal" component={DishModal} />
           <Route path="/signin" component={SignIn} />
-          <Route path="/signup/user" component={SingupUser} />
-          <Route path="/signup/restaurant" component={SingupRestaurant} />
+          <Route path="/signup/user" component={SignupUser} />
+          <Route path="/signup/restaurant" component={SignupRestaurant} />
           <Route path="/signup" component={SignUp} />
           <Route path="/menu" component={Menu} />
           <Route path="/search-restaurants" component={SearchRestaurants} />

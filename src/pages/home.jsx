@@ -8,14 +8,12 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await restService.getAll();
-      console.log("data got returned");
+      console.log("data got returned", data);
       setRestaurants(data);
     };
 
     getData();
   }, []);
-
-  console.log(restaurants);
 
   return (
     <>
