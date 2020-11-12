@@ -4,6 +4,7 @@ const Menu = () => {
   return (
     <>
       <NavBar signed />
+      <p style={{ marginTop: "200px" }}>Menu</p>
     </>
   );
 };
