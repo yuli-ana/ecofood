@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 const RestaurantList = ({ restaurant }) => {
   const classes = useStyles();
   const { id, name, url } = restaurant;
+  const firstLetter = name[0];
 
   return (
     <li style={{ listStyle: "none", gridColumnEnd: "span 3" }}>
@@ -21,7 +22,7 @@ const RestaurantList = ({ restaurant }) => {
         <CardHeader
           avatar={
             <Avatar aria-label="restaurant" className={classes.avatar}>
-              R
+              {firstLetter}
             </Avatar>
           }
           title={name}
