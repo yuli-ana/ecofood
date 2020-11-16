@@ -13,6 +13,7 @@ import {
   Container,
 } from "@material-ui/core";
 import restService from "../services/restaurants";
+import RestaurantList from "../components/searchRestaurants/RestaurantList";
 
 const useStyles = makeStyles((theme) => ({
   padding: {
@@ -23,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
 const SearchRestaurants = () => {
   const [filtered, setFiltered] = useState("");
   const [restaurants, setRestaurants] = useState([]);
-  const [rest, setRest] = useState([]);
+  const [filteredRest, setFilteredRest] = useState([]);
 
+  // Get all restaurants
   useEffect(() => {
     const getData = async () => {
       const data = await restService.getAll();
@@ -43,10 +45,10 @@ const SearchRestaurants = () => {
 
   const handleChange = (e) => {
     setFiltered(e.target.value);
-    setRest(filterArr);
+    setFilteredRest(filterArr);
   };
 
-  console.log(rest);
+  console.log(filteredRest);
 
   return (
     <>
@@ -62,10 +64,8 @@ const SearchRestaurants = () => {
             />
           </form>
           <ul>
-            {rest.map((item) => (
-              <li key={item.id}>
-                <Link to="/menu">{item.name}</Link>
-              </li>
+            {filteredRest.map((restaurant) => (
+              <RestaurantList key={restaurant.id} restaurant={restaurant} />
             ))}
           </ul>
         </Grid>
