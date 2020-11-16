@@ -19,12 +19,19 @@ const useStyles = makeStyles((theme) => ({
   padding: {
     padding: "100px 0 0",
   },
+  container: {
+    display: "grid",
+    justifyContent: "center",
+    gridTemplateColumns: "repeat(12, 80px)",
+    gridGap: theme.spacing(10),
+  },
 }));
 
 const SearchRestaurants = () => {
   const [filtered, setFiltered] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRest, setFilteredRest] = useState([]);
+  const classes = useStyles();
 
   // Get all restaurants
   useEffect(() => {
@@ -37,8 +44,6 @@ const SearchRestaurants = () => {
     getData();
   }, []);
 
-  const classes = useStyles();
-
   const filterArr = restaurants.filter((item) =>
     restaurants.length > 0 ? item.name.includes(filtered) : null
   );
@@ -47,8 +52,6 @@ const SearchRestaurants = () => {
     setFiltered(e.target.value);
     setFilteredRest(filterArr);
   };
-
-  console.log(filteredRest);
 
   return (
     <>
@@ -63,7 +66,7 @@ const SearchRestaurants = () => {
               fullWidth
             />
           </form>
-          <ul>
+          <ul className={classes.container} style={{ padding: 0 }}>
             {filteredRest.map((restaurant) => (
               <RestaurantList key={restaurant.id} restaurant={restaurant} />
             ))}
