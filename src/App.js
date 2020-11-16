@@ -23,8 +23,8 @@ const App = () => {
           <Route path="/signup/user" component={SignupUser} />
           <Route path="/signup/restaurant" component={SignupRestaurant} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/menu" component={Menu} />
-          <Route path="/search-restaurants" component={SearchRestaurants} />
+          <Route path="/restaurants/:id" component={Menu} />
+          <Route path="/restaurants" component={SearchRestaurants} />
           <Route path="/" component={Home} />
         </Switch>
       </Router>

@@ -171,7 +171,7 @@ const SignupUser = () => {
           <Grid item xs={6} className={classes.padding}>
             <Button
               component={RouterLink}
-              to="/search-restaurants"
+              to="/restaurants"
               variant="outlined"
               color="primary"
               size="large"
