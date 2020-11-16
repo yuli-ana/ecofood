@@ -2,6 +2,9 @@ const express = require("express");
 const usersRouter = express.Router();
 const uuid = require("uuid");
 
+// Restaurant mongoose model
+const User = require("../models/Users");
+
 let users = [
   {
     id: uuid.v4(),
