@@ -11,7 +11,7 @@ const restaurants = [
       { name: "Brown butter mayo, sourdough", price: 18 },
       { name: "Cremini mushroom, chimichurri", price: 22 },
       { name: "Applewood smoked cheddar", price: 16 },
-      { name: "Jalapeño hoe cakes, Yuzu honey, hot sauce", price: 18 },
+      { name: "c", price: 18 },
       { name: "daily selection of cured meats and cheeses", price: 24 },
     ],
   },
