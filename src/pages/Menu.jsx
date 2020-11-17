@@ -7,9 +7,10 @@ import { useParams } from "react-router-dom";
 const Menu = () => {
   const { id } = useParams();
   const [restData, setData] = useState([]);
+  console.log(id);
 
   // Find restaurant that matches url id
-  const restaurantData = restData.find((rest) => rest.id === id);
+  const restaurantData = restData.find((rest) => rest._id === id);
 
   useEffect(() => {
     const getData = async () => {
