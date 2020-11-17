@@ -1,17 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "../components/shared/Navbar";
 import { makeStyles } from "@material-ui/styles";
-import {
-  Button,
-  TextField,
-  Typography,
-  Select,
-  InputLabel,
-  MenuItem,
-  Grid,
-  Container,
-} from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import restService from "../services/restaurants";
 import RestaurantList from "../components/searchRestaurants/RestaurantList";
 
@@ -53,6 +43,8 @@ const SearchRestaurants = () => {
     setFilteredRest(filterArr);
   };
 
+  console.log(filteredRest);
+
   return (
     <>
       <NavBar signed />
@@ -68,7 +60,7 @@ const SearchRestaurants = () => {
           </form>
           <ul className={classes.container} style={{ padding: 0 }}>
             {filteredRest.map((restaurant) => (
-              <RestaurantList key={restaurant.id} restaurant={restaurant} />
+              <RestaurantList key={restaurant._id} restaurant={restaurant} />
             ))}
           </ul>
         </Grid>

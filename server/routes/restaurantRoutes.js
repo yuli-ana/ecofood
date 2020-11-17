@@ -1,12 +1,13 @@
 const express = require("express");
 const restaurantRouter = express.Router();
-const restaurantsData = require("../data/restaurants");
 
 // Restaurant mongoose model
 const Restaurant = require("../models/Restaurants");
 
-restaurantRouter.get("/", (req, res) => {
-  res.json(restaurantsData);
+// Get all restaurants
+restaurantRouter.get("/", async (req, res) => {
+  const restaurants = await Restaurant.find();
+  res.json(restaurants);
 });
 
 module.exports = restaurantRouter;
