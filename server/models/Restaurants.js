@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 
 // Restaurant Schema
 const restaurantSchema = new Schema({
-  name: String,
-  currency: String,
-  url: String,
+  name: { type: String, required: true },
+  currency: { type: String, required: true },
+  url: { type: String, required: true },
   dishes: [],
 });
 

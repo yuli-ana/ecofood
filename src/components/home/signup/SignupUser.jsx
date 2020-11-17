@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import userService from "../../../services/users";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -31,11 +31,12 @@ const useStyles = makeStyles((theme) => ({
 
 const SignupUser = () => {
   const classes = useStyles();
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors, reset, control } = useForm();
   const [userId, setUserId] = useState(null);
   const [isSigned, setIsSigned] = useState(false);
 
   const onSubmit = async (data) => {
+    console.log(data);
     const response = await userService.create(data);
     setUserId(response.id);
     setIsSigned(true);
@@ -79,19 +80,43 @@ const SignupUser = () => {
             <Grid container justify="center">
               <Grid item xs={6} className={classes.padding}>
                 <InputLabel id="select-age">Age</InputLabel>
-                <Select labelId="select-age" fullWidth>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
+                <Controller
+                  as={
+                    <Select labelId="select-age" fullWidth>
+                      <MenuItem value={18}>18</MenuItem>
+                      <MenuItem value={19}>19</MenuItem>
+                      <MenuItem value={20}>20</MenuItem>
+                      <MenuItem value={21}>21</MenuItem>
+                      <MenuItem value={22}>22</MenuItem>
+                      <MenuItem value={23}>23</MenuItem>
+                      <MenuItem value={24}>24</MenuItem>
+                      <MenuItem value={25}>25</MenuItem>
+                      <MenuItem value={26}>26</MenuItem>
+                      <MenuItem value={27}>27</MenuItem>
+                      <MenuItem value={28}>28</MenuItem>
+                      <MenuItem value={29}>29</MenuItem>
+                      <MenuItem value={30}>30</MenuItem>
+                    </Select>
+                  }
+                  name="age"
+                  control={control}
+                  defaultValue=""
+                />
               </Grid>
               <Grid item xs={6} className={classes.padding}>
-                <InputLabel id="select-gender">Gender</InputLabel>
-                <Select labelId="select-gender" fullWidth>
-                  <MenuItem value={"female"}>Female</MenuItem>
-                  <MenuItem value={"male"}>Male</MenuItem>
-                  <MenuItem value={"..."}>...</MenuItem>
-                </Select>
+                <InputLabel id="select-gender">Sex</InputLabel>
+                <Controller
+                  as={
+                    <Select labelId="Sex" fullWidth>
+                      <MenuItem value={"female"}>Female</MenuItem>
+                      <MenuItem value={"male"}>Male</MenuItem>
+                      <MenuItem value={"other"}>Other</MenuItem>
+                    </Select>
+                  }
+                  name="sex"
+                  control={control}
+                  defaultValue=""
+                />
               </Grid>
             </Grid>
             <TextField
