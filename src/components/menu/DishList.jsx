@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   List,
   ListItem,
@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { BlockReserveLoading } from "react-loadingg";
+import { Context } from "../../App";
+import userService from "../../services/restaurants";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -36,19 +38,30 @@ const DishList = ({ data }) => {
 const ListIt = ({ dish }) => {
   const classes = useStyles();
   const [size, setSize] = useState("");
+  const [userId] = useContext(Context);
 
   const handleChange = (e) => {
     setSize(e.target.value);
   };
-  const handleSubmit = (e, id) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(size);
-    console.log(id);
+
+    const newDish = {
+      name: dish.name,
+      price: dish.price,
+      size: size,
+      id: dish.id,
+    };
+
+    const addDish = await userService.createDish(newDish, userId);
+
+    console.log(addDish);
   };
 
   return (
     <Container>
-      <form action="" onSubmit={(e) => handleSubmit(e, dish._id)}>
+      <form action="" onSubmit={(e) => handleSubmit(e)}>
         <Grid container>
           <Grid container item xs={8} alignItems="center">
             <Grid item xs={2}>
