@@ -10,7 +10,7 @@ const userSchema = new Schema({
   phone: String,
   weight: { type: Number, required: true },
   height: { type: Number, required: true },
-  dishes: [String],
+  dishes: [],
   password: String,
   updated: { type: Date, default: Date.now },
 });

@@ -12,7 +12,6 @@ const useStyles = makeStyles({
 });
 
 const RestaurantList = ({ restaurant }) => {
-  console.log(restaurant);
   const classes = useStyles();
   const { _id, name, url } = restaurant;
   const firstLetter = name[0];
