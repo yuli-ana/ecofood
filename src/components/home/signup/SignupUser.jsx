@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { makeStyles } from "@material-ui/styles";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   TextField,
@@ -12,8 +13,7 @@ import {
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useForm, Controller } from "react-hook-form";
 import userService from "../../../services/users";
-import { BlockReserveLoading } from "react-loadingg";
-import { Link as RouterLink } from "react-router-dom";
+import { Context } from "../../../App";
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -30,17 +30,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignupUser = () => {
+  const history = useHistory();
   const classes = useStyles();
+  const [setUserId] = useContext(Context);
   const { register, handleSubmit, errors, reset, control } = useForm();
-  const [userId, setUserId] = useState(null);
-  const [isSigned, setIsSigned] = useState(false);
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const response = await userService.create(data);
-    setUserId(response.id);
-    setIsSigned(true);
+    const response = await userService.createUser(data);
+    setUserId(response._id);
     reset();
+    history.push("/restaurants");
   };
 
   return (
@@ -159,12 +158,9 @@ const SignupUser = () => {
             fullWidth
           />
           <Grid container justify="center">
-            {/* {!isSigned ? <BlockReserveLoading /> : null} */}
             <Grid item>
               <Button
                 type="submit"
-                component={RouterLink}
-                to="/restaurants"
                 variant="outlined"
                 color="primary"
                 size="large"
