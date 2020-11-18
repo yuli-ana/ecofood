@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -9,10 +9,10 @@ import {
   MenuItem,
   Grid,
 } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useForm, Controller } from "react-hook-form";
 import userService from "../../../services/users";
+import { BlockReserveLoading } from "react-loadingg";
 import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,11 +40,8 @@ const SignupUser = () => {
     const response = await userService.create(data);
     setUserId(response.id);
     setIsSigned(true);
-    console.log(response, "Submitting complete");
     reset();
   };
-
-  console.log(userId);
 
   return (
     <Grid
@@ -54,160 +51,132 @@ const SignupUser = () => {
       className={classes.center}
       spacing={3}
     >
-      {!isSigned ? (
-        <Grid item>
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="name"
-              variant="outlined"
-              label="Name"
-              fullWidth
-            />
-            <TextField
-              inputRef={register({ required: true })}
-              name="email"
-              variant="outlined"
-              label="Email"
-              fullWidth
-              className={classes.padding}
-            />
-            {errors.name && errors.name.type === "required" && (
-              <div className="error">You must enter your name</div>
-            )}
-            <Grid container justify="center">
-              <Grid item xs={6} className={classes.padding}>
-                <InputLabel id="select-age">Age</InputLabel>
-                <Controller
-                  as={
-                    <Select labelId="select-age" fullWidth>
-                      <MenuItem value={18}>18</MenuItem>
-                      <MenuItem value={19}>19</MenuItem>
-                      <MenuItem value={20}>20</MenuItem>
-                      <MenuItem value={21}>21</MenuItem>
-                      <MenuItem value={22}>22</MenuItem>
-                      <MenuItem value={23}>23</MenuItem>
-                      <MenuItem value={24}>24</MenuItem>
-                      <MenuItem value={25}>25</MenuItem>
-                      <MenuItem value={26}>26</MenuItem>
-                      <MenuItem value={27}>27</MenuItem>
-                      <MenuItem value={28}>28</MenuItem>
-                      <MenuItem value={29}>29</MenuItem>
-                      <MenuItem value={30}>30</MenuItem>
-                    </Select>
-                  }
-                  name="age"
-                  control={control}
-                  defaultValue=""
-                />
-              </Grid>
-              <Grid item xs={6} className={classes.padding}>
-                <InputLabel id="select-gender">Sex</InputLabel>
-                <Controller
-                  as={
-                    <Select labelId="Sex" fullWidth>
-                      <MenuItem value={"female"}>Female</MenuItem>
-                      <MenuItem value={"male"}>Male</MenuItem>
-                      <MenuItem value={"other"}>Other</MenuItem>
-                    </Select>
-                  }
-                  name="sex"
-                  control={control}
-                  defaultValue=""
-                />
-              </Grid>
+      <Grid item>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            className={classes.padding}
+            required
+            inputRef={register}
+            name="name"
+            variant="outlined"
+            label="Name"
+            fullWidth
+          />
+          <TextField
+            inputRef={register({ required: true })}
+            name="email"
+            variant="outlined"
+            label="Email"
+            fullWidth
+            className={classes.padding}
+          />
+          {errors.name && errors.name.type === "required" && (
+            <div className="error">You must enter your name</div>
+          )}
+          <Grid container justify="center">
+            <Grid item xs={6} className={classes.padding}>
+              <InputLabel id="select-age">Age</InputLabel>
+              <Controller
+                as={
+                  <Select labelId="select-age" fullWidth>
+                    <MenuItem value={18}>18</MenuItem>
+                    <MenuItem value={19}>19</MenuItem>
+                    <MenuItem value={20}>20</MenuItem>
+                    <MenuItem value={21}>21</MenuItem>
+                    <MenuItem value={22}>22</MenuItem>
+                    <MenuItem value={23}>23</MenuItem>
+                    <MenuItem value={24}>24</MenuItem>
+                    <MenuItem value={25}>25</MenuItem>
+                    <MenuItem value={26}>26</MenuItem>
+                    <MenuItem value={27}>27</MenuItem>
+                    <MenuItem value={28}>28</MenuItem>
+                    <MenuItem value={29}>29</MenuItem>
+                    <MenuItem value={30}>30</MenuItem>
+                  </Select>
+                }
+                name="age"
+                control={control}
+                defaultValue=""
+              />
             </Grid>
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="phone"
-              variant="outlined"
-              label="Phone"
-              fullWidth
-            />
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="password"
-              variant="outlined"
-              label="Create password"
-              fullWidth
-            />
-            <Typography
-              color="primary"
-              variant="body1"
-              className={classes.padding}
-            >
-              Additional Information
-            </Typography>
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="weight"
-              variant="outlined"
-              label="Weight"
-              fullWidth
-            />
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="height"
-              variant="outlined"
-              label="Height"
-              fullWidth
-            />
-            <Grid container justify="center">
-              <Grid item>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  className={classes.button}
-                  endIcon={<ArrowForwardIcon />}
-                >
-                  sign up
-                </Button>
-              </Grid>
+            <Grid item xs={6} className={classes.padding}>
+              <InputLabel id="select-gender">Sex</InputLabel>
+              <Controller
+                as={
+                  <Select labelId="Sex" fullWidth>
+                    <MenuItem value={"female"}>Female</MenuItem>
+                    <MenuItem value={"male"}>Male</MenuItem>
+                    <MenuItem value={"other"}>Other</MenuItem>
+                  </Select>
+                }
+                name="sex"
+                control={control}
+                defaultValue=""
+              />
             </Grid>
-          </form>
-        </Grid>
-      ) : (
-        <Grid
-          container
-          justify="center"
-          alignItems="center"
-          direction="column"
-          className={classes.center}
-          spacing={3}
-        >
-          <Grid item xs={12} className={classes.padding}>
-            <Alert variant="outlined" severity="success">
-              Succesfully subscribed
-            </Alert>
           </Grid>
-
-          <Grid item xs={6} className={classes.padding}>
-            <Button
-              component={RouterLink}
-              to="/restaurants"
-              variant="outlined"
-              color="primary"
-              size="large"
-              className={classes.button}
-              endIcon={<ArrowForwardIcon />}
-            >
-              next
-            </Button>
+          <TextField
+            className={classes.padding}
+            required
+            inputRef={register}
+            name="phone"
+            variant="outlined"
+            label="Phone"
+            fullWidth
+          />
+          <TextField
+            className={classes.padding}
+            required
+            inputRef={register}
+            name="password"
+            variant="outlined"
+            label="Create password"
+            fullWidth
+          />
+          <Typography
+            color="primary"
+            variant="body1"
+            className={classes.padding}
+          >
+            Additional Information
+          </Typography>
+          <TextField
+            className={classes.padding}
+            required
+            inputRef={register}
+            name="weight"
+            variant="outlined"
+            label="Weight"
+            fullWidth
+          />
+          <TextField
+            className={classes.padding}
+            required
+            inputRef={register}
+            name="height"
+            variant="outlined"
+            label="Height"
+            fullWidth
+          />
+          <Grid container justify="center">
+            {/* {!isSigned ? <BlockReserveLoading /> : null} */}
+            <Grid item>
+              <Button
+                type="submit"
+                component={RouterLink}
+                to="/restaurants"
+                variant="outlined"
+                color="primary"
+                size="large"
+                className={classes.button}
+                endIcon={<ArrowForwardIcon />}
+              >
+                sign up
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      )}
+        </form>
+      </Grid>
     </Grid>
   );
 };
