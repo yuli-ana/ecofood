@@ -38,7 +38,7 @@ const DishList = ({ data }) => {
 const ListIt = ({ dish }) => {
   const classes = useStyles();
   const [size, setSize] = useState("");
-  const [userId] = useContext(Context);
+  const [userId, setUserId] = useContext(Context);
 
   const handleChange = (e) => {
     setSize(e.target.value);

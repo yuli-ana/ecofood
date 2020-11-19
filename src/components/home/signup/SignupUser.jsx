@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const SignupUser = () => {
   const history = useHistory();
   const classes = useStyles();
-  const [setUserId] = useContext(Context);
+  const [userId, setUserId] = useContext(Context);
   const { register, handleSubmit, errors, reset, control } = useForm();
 
   const onSubmit = async (data) => {
