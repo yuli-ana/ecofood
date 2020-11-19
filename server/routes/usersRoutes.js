@@ -3,7 +3,7 @@ const express = require("express");
 const usersRouter = express.Router();
 
 // Restaurant mongoose model
-const User = require("../models/Users");
+const User = require("../models/User");
 
 // Get list of users
 usersRouter.get("/", async (req, res) => {
