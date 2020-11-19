@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const restaurantSchema = new Schema({
   name: { type: String, required: true },
   currency: { type: String, required: true },
+  passwordHash: String,
   url: { type: String, required: true },
   dishes: [],
 });
