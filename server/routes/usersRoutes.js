@@ -1,6 +1,6 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
 const usersRouter = express.Router();
-const uuid = require("uuid");
 
 // Restaurant mongoose model
 const User = require("../models/Users");
@@ -11,29 +11,24 @@ usersRouter.get("/", async (req, res) => {
   res.json(users);
 });
 
-// usersRouter.get("/:id", (req, res) => {
-//   const id = req.params.id;
-//   const user = users.find((user) => user.id === Number(id));
-//   res.json(user);
-// });
+// Create a new user
+usersRouter.post("/", async (req, res) => {
+  const body = req.body;
 
-usersRouter.post("/add", async (req, res) => {
-  console.log(req.body);
-  console.log("successful request");
+  const saltRound = 10;
+
+  // Store the hash of the password that is generated with the bcrypt.hash
+  const passwordHash = await bcrypt.hash(body.password, saltRound);
 
   const newUser = new User({
     ...req.body,
     dishes: [],
+    passwordHash,
   });
 
-  // try {
-  //   const user = await newUser.save();
-  //   res.json(user);
-  // } catch (err) {
-  //   res.status(400).send("Bad request");
-  // }
-
+  // Save user to the collection
   const user = await newUser.save();
+
   res.json(user);
 });
 

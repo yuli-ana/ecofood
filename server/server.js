@@ -6,6 +6,7 @@ const usersRouter = require("./routes/usersRoutes");
 const mongoose = require("mongoose");
 // Access to env variables
 const config = require("./utils/config");
+const loginRouter = require("./routes/login");
 
 // Connect to MongoDB Atlas
 mongoose
@@ -24,5 +25,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/users", usersRouter);
 app.use("/api/restaurants", restaurantRouter);
+app.use("/api/login", loginRouter);
 
 module.exports = app;
