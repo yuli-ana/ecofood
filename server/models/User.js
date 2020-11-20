@@ -8,17 +8,32 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   age: { type: Number, required: true },
   sex: { type: String, required: true },
-  phone: String,
+  phone: { type: Number, required: true, minlength: 8 },
   weight: { type: Number, required: true },
   height: { type: Number, required: true },
-  dishes: [],
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   passwordHash: String,
   updated: { type: Date, default: Date.now },
 });
 
-userSchema.plugin(uniqueValidator);
-
 const User = mongoose.model("User", userSchema);
+
+userSchema.set("toJSON", {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+    // the passwordHash should not be revealed
+    delete returnedObject.passwordHash;
+  },
+});
+
+userSchema.plugin(uniqueValidator);
 
 // Export mongoose model
 module.exports = User;
