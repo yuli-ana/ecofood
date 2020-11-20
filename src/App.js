@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState, createContext } from "react";
 import Home from "./pages/home";
-import SignIn from "./components/home/SignIn";
+import SignIn from "./components/home/signin/SignIn";
 import SignUp from "./components/home/signup/SignUp";
 import SignupUser from "./components/home/signup/SignupUser";
 import DishModal from "./components/menu/DishModal";
