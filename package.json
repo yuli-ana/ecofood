@@ -31,7 +31,7 @@
   },
   "scripts": {
     "client": "react-scripts start",
-    "server": "nodemon server/index.js",
+    "server": "nodemon server/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

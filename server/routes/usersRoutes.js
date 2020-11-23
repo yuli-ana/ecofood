@@ -32,16 +32,17 @@ usersRouter.post("/", async (req, res) => {
   res.json(user);
 });
 
-usersRouter.post("/:id", async (req, res) => {
-  const { userId } = req.params;
-  const { size, name, price, id } = req.body;
+// usersRouter.post("/:id", async (req, res) => {
+//   const { userId } = req.params;
+//   const { size, name, price, id } = req.body;
 
-  console.log("done");
+//   console.log("done");
 
-  const user = await User.findById(userId);
+//   const user = await User.findById(userId);
 
-  console.log(user);
+//   console.log(user);
 
-  user.dishes.push();
-});
+//   user.dishes.push();
+
+// });
 module.exports = usersRouter;
