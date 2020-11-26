@@ -37,7 +37,7 @@ const DishList = ({ data }) => {
 
 const ListIt = ({ dish }) => {
   const classes = useStyles();
-  const [size, setSize] = useState("");
+  const [portionSize, setSize] = useState("");
   const [userId, setUserId] = useContext(Context);
 
   const handleChange = (e) => {
@@ -50,7 +50,7 @@ const ListIt = ({ dish }) => {
     const newDish = {
       name: dish.name,
       price: dish.price,
-      size: size,
+      portionSize,
       id: dish.id,
     };
 
@@ -72,11 +72,13 @@ const ListIt = ({ dish }) => {
             </Grid>
             <Grid item xs={6}>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel htmlFor="portion-size-native">Size</InputLabel>
+                <InputLabel htmlFor="portion-size-native">
+                  Portion Size
+                </InputLabel>
                 <Select
                   native
                   label="size"
-                  value={size}
+                  value={portionSize}
                   onChange={handleChange}
                   inputProps={{
                     name: "portion size",
