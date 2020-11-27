@@ -22,20 +22,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DishList = ({ data }) => {
+  console.log("no data");
+  console.log(data);
   return (
     <List>
       {!data ? (
         <BlockReserveLoading />
       ) : (
         data.dishes.map((dish) => {
-          return <ListIt key={dish._id} dish={dish} />;
+          return <DishItem key={dish._id} dish={dish} />;
         })
       )}
     </List>
   );
 };
 
-const ListIt = ({ dish }) => {
+const DishItem = ({ dish }) => {
   const classes = useStyles();
   const [portionSize, setSize] = useState("");
   const [userId, setUserId] = useContext(Context);

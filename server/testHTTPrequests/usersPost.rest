@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+ "phone": "6477814721",
+ "password": "488666777888",
+ "weight": "43", 
+ "age": 25,
+ "sex": "male",
+ "height": "45",
+ "name": "David",
+ "email": "david@gmail.com"
+}

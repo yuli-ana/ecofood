@@ -7,6 +7,7 @@ const User = require("../models/User");
 
 // Get list of users
 usersRouter.get("/", async (req, res) => {
+  console.log("Succesfull request", req);
   const users = await User.find();
   res.json(users);
 });
