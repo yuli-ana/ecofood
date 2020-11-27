@@ -11,9 +11,9 @@ const useStyles = makeStyles({
   },
 });
 
-const RestaurantList = ({ restaurant }) => {
+const RestaurantItem = ({ restaurant }) => {
   const classes = useStyles();
-  const { _id, name, url } = restaurant;
+  const { id, name, url } = restaurant;
   const firstLetter = name[0];
 
   return (
@@ -31,7 +31,8 @@ const RestaurantList = ({ restaurant }) => {
         <Button
           fullWidth
           component={RouterLink}
-          to={`/restaurants/${_id}`}
+          // will render Menu component with the restaurant menu list
+          to={`/restaurants/${id}`}
           color="primary"
           size="large"
         >
@@ -42,4 +43,4 @@ const RestaurantList = ({ restaurant }) => {
   );
 };
 
-export default RestaurantList;
+export default RestaurantItem;

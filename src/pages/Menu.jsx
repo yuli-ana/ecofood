@@ -9,7 +9,9 @@ const Menu = () => {
   const [restData, setData] = useState([]);
 
   // Find restaurant that matches url id and return
-  const restaurantData = restData.find((rest) => rest._id === id);
+  const restaurantData = restData.find((rest) => rest.id === id);
+
+  console.log(restaurantData);
 
   useEffect(() => {
     const getData = async () => {

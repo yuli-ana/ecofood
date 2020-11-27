@@ -3,7 +3,7 @@ import NavBar from "../components/shared/Navbar";
 import { makeStyles } from "@material-ui/styles";
 import { TextField, Grid } from "@material-ui/core";
 import restService from "../services/restaurants";
-import RestaurantList from "../components/searchRestaurants/RestaurantList";
+import RestaurantItem from "../components/searchRestaurants/RestaurantItem";
 
 const useStyles = makeStyles((theme) => ({
   padding: {
@@ -28,18 +28,23 @@ const SearchRestaurants = () => {
     const getData = async () => {
       const data = await restService.getAll();
       console.log("data got returned", data);
+
+      // Save data in state
       setRestaurants(data);
     };
 
     getData();
   }, []);
 
+  // Filter restaurants by input value
   const filterArr = restaurants.filter((item) =>
     restaurants.length > 0 ? item.name.includes(filtered) : null
   );
 
   const handleChange = (e) => {
+    // Get input value, update state
     setFiltered(e.target.value);
+    // Set filtered restaurants
     setFilteredRest(filterArr);
   };
 
@@ -60,7 +65,7 @@ const SearchRestaurants = () => {
           </form>
           <ul className={classes.container} style={{ padding: 0 }}>
             {filteredRest.map((restaurant) => (
-              <RestaurantList key={restaurant._id} restaurant={restaurant} />
+              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
             ))}
           </ul>
         </Grid>

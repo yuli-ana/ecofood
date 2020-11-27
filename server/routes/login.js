@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const loginRouter = require("express").Router();
 const User = require("../models/User");
 
+// Login user
 loginRouter.post("/", async (req, res) => {
   const body = req.body;
 
