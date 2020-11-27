@@ -14,6 +14,7 @@ const theme = createMuiTheme({
   spacing: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 16, 32, 64],
 });
 
+// Create a new global state and export it
 export const Context = createContext();
 
 const App = () => {

@@ -8,7 +8,7 @@ const Menu = () => {
   const { id } = useParams();
   const [restData, setData] = useState([]);
 
-  // Find restaurant that matches url id
+  // Find restaurant that matches url id and return
   const restaurantData = restData.find((rest) => rest._id === id);
 
   useEffect(() => {
