@@ -11,12 +11,7 @@ const userSchema = new Schema({
   phone: { type: Number, required: true, minlength: 8 },
   weight: { type: Number, required: true },
   height: { type: Number, required: true },
-  reviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
+  reviews: [],
   passwordHash: String,
   updated: { type: Date, default: Date.now },
 });

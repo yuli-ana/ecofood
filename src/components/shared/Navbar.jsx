@@ -6,6 +6,10 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "black",
   },
+  toolbar: {
+    maxWidth: "300px",
+    margin: "0 0 0 auto",
+  },
   button: {
     color: "white",
   },
@@ -16,7 +20,7 @@ const NavBar = ({ signed }) => {
 
   return (
     <AppBar position="fixed" className={classes.root}>
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <NavLink path="/" text="home" />
         {!signed ? (
           <NavLink path="/accounts/signin" text="sign in" />

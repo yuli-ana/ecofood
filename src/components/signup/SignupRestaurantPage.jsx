@@ -1,6 +1,7 @@
 import { Button, TextField, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useForm } from "react-hook-form";
+import NavBar from "../shared/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -25,67 +26,70 @@ const SignupRestaurantPage = () => {
   };
 
   return (
-    <Grid
-      container
-      justify="center"
-      alignContent="center"
-      className={classes.center}
-      spacing={3}
-    >
-      <Grid item xs={6}>
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            className={classes.padding}
-            required
-            inputRef={register}
-            name="email"
-            variant="outlined"
-            label="Email"
-            fullWidth
-          />
-          <TextField
-            className={classes.padding}
-            required
-            inputRef={register}
-            name="name"
-            variant="outlined"
-            label="Name"
-            fullWidth
-          />
-          <TextField
-            className={classes.padding}
-            required
-            inputRef={register}
-            name="phone"
-            variant="outlined"
-            label="Phone"
-            fullWidth
-          />
-          <TextField
-            className={classes.padding}
-            required
-            inputRef={register}
-            name="password"
-            variant="outlined"
-            label="Create password"
-            fullWidth
-          />
-          <Grid container justify="center">
-            <Grid item>
-              <Button
-                type="submit"
-                variant="outlined"
-                color="primary"
-                size="large"
-                className={classes.button}
-              >
-                Sign up
-              </Button>
+    <>
+      <NavBar />
+      <Grid
+        container
+        justify="center"
+        alignContent="center"
+        className={classes.center}
+        spacing={3}
+      >
+        <Grid item xs={3}>
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="email"
+              variant="outlined"
+              label="Email"
+              fullWidth
+            />
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="name"
+              variant="outlined"
+              label="Name"
+              fullWidth
+            />
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="phone"
+              variant="outlined"
+              label="Phone"
+              fullWidth
+            />
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="password"
+              variant="outlined"
+              label="Create password"
+              fullWidth
+            />
+            <Grid container justify="center">
+              <Grid item>
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                >
+                  Sign up
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 
