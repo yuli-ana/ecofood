@@ -1,4 +1,4 @@
-import NavBar from "../../shared/Navbar";
+import NavBar from "../shared/Navbar";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = () => {
+const SignUpPage = () => {
   const classes = useStyles();
 
   return (
@@ -31,7 +31,7 @@ const SignUp = () => {
             variant="outlined"
             color="primary"
             component={RouterLink}
-            to="/signup/user"
+            to="/accounts/signup/user"
             endIcon={<ArrowForward />}
           >
             User
@@ -43,7 +43,7 @@ const SignUp = () => {
             variant="outlined"
             color="primary"
             component={RouterLink}
-            to="/signup/restaurant"
+            to="/accounts/signup/restaurant"
             endIcon={<ArrowForward />}
           >
             Restaurant
@@ -54,4 +54,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

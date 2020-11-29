@@ -12,8 +12,8 @@ import {
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useForm, Controller } from "react-hook-form";
-import userService from "../../../services/users";
-import { Context } from "../../../App";
+import userService from "../../services/users";
+import { Context } from "../../App";
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupUser = () => {
+const SignupUserPage = () => {
   const history = useHistory();
   const classes = useStyles();
   const [userId, setUserId] = useContext(Context);
@@ -182,4 +182,4 @@ const SignupUser = () => {
   );
 };
 
-export default SignupUser;
+export default SignupUserPage;

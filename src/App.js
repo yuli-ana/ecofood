@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState, createContext } from "react";
-import Home from "./pages/home";
-import SignIn from "./components/home/signin/SignIn";
-import SignUp from "./components/home/signup/SignUp";
-import SignupUser from "./components/home/signup/SignupUser";
+import HomePage from "./pages/home";
+import SignInPage from "./components/signin/SignInPage";
+import SignUpPage from "./components/signup/SignUpPage";
+import SignupUserPage from "./components/signup/SignupUserPage";
 import DishModal from "./components/menu/DishModal";
-import SignupRestaurant from "./components/home/signup/SignupRestaurant";
-import Menu from "./pages/menu";
-import SearchRestaurants from "./pages/searchRestaurants";
+import SignupRestaurantPage from "./components/signup/SignupRestaurantPage";
+import MenuPage from "./pages/menu";
+import SearchRestaurantsPage from "./pages/searchRestaurants";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
@@ -29,13 +29,18 @@ const App = () => {
         <Router>
           <Switch>
             <Route path="/modal" component={DishModal} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup/user" component={SignupUser} />
-            <Route path="/signup/restaurant" component={SignupRestaurant} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/restaurants/:id" component={Menu} />
-            <Route path="/restaurants" component={SearchRestaurants} />
-            <Route path="/" component={Home} />
+            {/* <Route exact path="/accounts/signin/:id" component={UserProfile} /> */}
+            <Route path="/accounts/signin" component={SignInPage} />
+            <Route
+              exact
+              path="/accounts/signup/restaurant"
+              component={SignupRestaurantPage}
+            />
+            <Route path="/accounts/signup/user" component={SignupUserPage} />
+            <Route path="/accounts/signup" component={SignUpPage} />
+            <Route exact path="/restaurants/:id" component={MenuPage} />
+            <Route path="/restaurants" component={SearchRestaurantsPage} />
+            <Route path="/" component={HomePage} />
           </Switch>
         </Router>
       </ThemeProvider>

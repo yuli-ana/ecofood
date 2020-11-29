@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchRestaurants = () => {
+const SearchRestaurantsPage = () => {
   const [filtered, setFiltered] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRest, setFilteredRest] = useState([]);
@@ -74,4 +74,4 @@ const SearchRestaurants = () => {
   );
 };
 
-export default SearchRestaurants;
+export default SearchRestaurantsPage;

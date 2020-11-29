@@ -4,7 +4,7 @@ import DishList from "../components/menu/DishList";
 import restService from "../services/restaurants";
 import { useParams } from "react-router-dom";
 
-const Menu = () => {
+const MenuPage = () => {
   const { id } = useParams();
   const [restData, setData] = useState([]);
 
@@ -31,4 +31,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuPage;

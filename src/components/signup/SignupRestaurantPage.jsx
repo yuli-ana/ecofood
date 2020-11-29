@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupRestaurant = () => {
+const SignupRestaurantPage = () => {
   const classes = useStyles();
   const { register, handleSubmit, watch, errors } = useForm();
 
@@ -89,4 +89,4 @@ const SignupRestaurant = () => {
   );
 };
 
-export default SignupRestaurant;
+export default SignupRestaurantPage;

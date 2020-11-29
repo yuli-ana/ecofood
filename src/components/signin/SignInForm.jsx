@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
-import loginService from "../../../services/login";
+import loginService from "../../services/login";
 
 const SignInForm = () => {
   const { register, handleSubmit, errors, reset, control } = useForm();
