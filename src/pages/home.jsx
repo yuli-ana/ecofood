@@ -1,6 +1,6 @@
 import NavBar from "../components/shared/Navbar";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <NavBar />
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
