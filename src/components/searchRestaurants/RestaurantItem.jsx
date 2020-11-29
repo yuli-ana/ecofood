@@ -1,5 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardMedia, CardHeader, Avatar, Button } from "@material-ui/core";
+import {
+  Card,
+  CardMedia,
+  CardHeader,
+  Avatar,
+  Button,
+  List,
+} from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -9,6 +16,10 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: "#FF385C",
   },
+  list: {
+    listStyle: "none",
+    gridColumnEnd: "span 3",
+  },
 });
 
 const RestaurantItem = ({ restaurant }) => {
@@ -17,7 +28,7 @@ const RestaurantItem = ({ restaurant }) => {
   const firstLetter = name[0];
 
   return (
-    <li style={{ listStyle: "none", gridColumnEnd: "span 3" }}>
+    <List className={classes.list}>
       <Card>
         <CardHeader
           avatar={
@@ -31,7 +42,6 @@ const RestaurantItem = ({ restaurant }) => {
         <Button
           fullWidth
           component={RouterLink}
-          // will render Menu component with the restaurant menu list
           to={`/restaurants/${id}`}
           color="primary"
           size="large"
@@ -39,7 +49,7 @@ const RestaurantItem = ({ restaurant }) => {
           review
         </Button>
       </Card>
-    </li>
+    </List>
   );
 };
 
