@@ -17,26 +17,26 @@ const NavBar = ({ signed }) => {
   return (
     <AppBar position="fixed" className={classes.root}>
       <Toolbar>
-        <NavLink to="/" text="home" />
+        <NavLink path="/" text="home" />
         {!signed ? (
-          <NavLink to="/signin" text="sign in" />
+          <NavLink path="/accounts/signin" text="sign in" />
         ) : (
-          <NavLink to="/" text="log out" />
+          <NavLink path="/" text="log out" />
         )}
-        {!signed && <NavLink to="/signup" text="sign up" />}
+        {!signed && <NavLink path="/accounts/signup" text="sign up" />}
       </Toolbar>
     </AppBar>
   );
 };
 
-const NavLink = ({ to, text }) => {
+const NavLink = ({ path, text }) => {
   const classes = useStyles();
   return (
     <Button
       className={classes.button}
       variant="outlined"
       component={RouterLink}
-      to={to}
+      to={path}
     >
       {text}
     </Button>
