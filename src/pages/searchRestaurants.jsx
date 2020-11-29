@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchRestaurantsPage = () => {
-  const [filtered, setFiltered] = useState("");
+  const [input, setInput] = useState("");
   const [restaurants, setRestaurants] = useState([]);
-  const [filteredRest, setFilteredRest] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const classes = useStyles();
 
   // Get all restaurants
@@ -29,26 +29,26 @@ const SearchRestaurantsPage = () => {
       const data = await restService.getAll();
       console.log("data got returned", data);
 
-      // Save data in state
+      // Save restaurants in state
       setRestaurants(data);
     };
 
     getData();
   }, []);
 
-  // Filter restaurants by input value
-  const filterArr = restaurants.filter((item) =>
-    restaurants.length > 0 ? item.name.includes(filtered) : null
+  // Filter restaurants by input value for easier access to searched restaurant
+  const filteredByInput = restaurants.filter((item) =>
+    restaurants.length > 0 ? item.name.includes(input) : null
   );
 
   const handleChange = (e) => {
     // Get input value, update state
-    setFiltered(e.target.value);
+    setInput(e.target.value);
     // Set filtered restaurants
-    setFilteredRest(filterArr);
+    setFiltered(filteredByInput);
   };
 
-  console.log(filteredRest);
+  console.log(filtered);
 
   return (
     <>
@@ -64,7 +64,7 @@ const SearchRestaurantsPage = () => {
             />
           </form>
           <ul className={classes.container} style={{ padding: 0 }}>
-            {filteredRest.map((restaurant) => (
+            {filtered.map((restaurant) => (
               <RestaurantItem key={restaurant.id} restaurant={restaurant} />
             ))}
           </ul>

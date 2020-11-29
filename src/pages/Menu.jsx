@@ -6,26 +6,28 @@ import { useParams } from "react-router-dom";
 
 const MenuPage = () => {
   const { id } = useParams();
-  const [restData, setData] = useState([]);
-
-  // Find restaurant that matches url id and return
-  const restaurantData = restData.find((rest) => rest.id === id);
-
-  console.log(restaurantData);
+  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const data = await restService.getAll();
-      setData(data);
+      setRestaurants(data);
     };
 
     getData();
   }, []);
 
+  // Find restaurant that matches url id
+  const restaurantData = restaurants.find((rest) => rest.id === id);
+
+  console.log(restaurantData);
+
   return (
     <>
       <NavBar signed />
-      <h2 style={{ marginTop: "200px" }}>Menu</h2>
+      <h2 style={{ margin: "150px 0 50px", textAlign: "center" }}>
+        {restaurantData?.name} Restaurant Menu
+      </h2>
       <DishList data={restaurantData} />
     </>
   );
