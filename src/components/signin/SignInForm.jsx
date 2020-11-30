@@ -1,53 +1,72 @@
 import { useState } from "react";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Link } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 import NavBar from "../shared/Navbar";
-import loginService from "../../services/login";
+import loginUser from "../../services/login";
+// import { Link } from "react-router-dom";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { useHistory } from "react-router-dom";
 
 const SignInForm = () => {
   const { register, handleSubmit, errors, reset, control } = useForm();
+  const history = useHistory();
 
   const onSubmit = async (data) => {
     console.log(data);
+
+    const loginInfo = await loginUser(data);
+    console.log(loginInfo);
     reset();
   };
 
   return (
     <>
-      <NavBar />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        style={{ margin: "200px 0 0 100px" }}
-        action=""
-      >
+      <form onSubmit={handleSubmit(onSubmit)} action="">
         <div>
           <div style={{ margin: "30px 0" }}>
             <TextField
               inputRef={register}
-              style={{ width: "300px" }}
-              name="userName"
+              style={{ width: "100%" }}
+              name="email"
               label="Username"
               variant="outlined"
+              color="primary"
+              autoFocus
             />
           </div>
-          <div style={{ margin: "30px 0" }}>
+          <div>
             <TextField
               inputRef={register}
-              style={{ width: "300px" }}
+              style={{ width: "100%" }}
               name="password"
               label="Password"
               variant="outlined"
             />
           </div>
         </div>
-
-        <Button variant="outlined" type="submit">
+        <Button
+          fullWidth
+          variant="outlined"
+          type="submit"
+          style={{
+            background: "black",
+            border: "none",
+            color: "white",
+            margin: "30px 0",
+            padding: "12px",
+          }}
+        >
           login
         </Button>
-        <Button variant="outlined" type="submit">
-          cancel
-        </Button>
       </form>
+      <Link
+        underline="hover"
+        color="primary"
+        to="/accounts/signup"
+        onClick={() => history.push("/accounts/signup")}
+      >
+        Don't have an account? Sign up
+      </Link>
     </>
   );
 };
