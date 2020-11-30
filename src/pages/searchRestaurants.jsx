@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import NavBar from "../components/shared/Navbar";
 import { makeStyles } from "@material-ui/styles";
-import { TextField, Grid } from "@material-ui/core";
+import { TextField, Grid, List } from "@material-ui/core";
 import restService from "../services/restaurants";
 import RestaurantItem from "../components/searchRestaurants/RestaurantItem";
 
@@ -63,11 +63,11 @@ const SearchRestaurantsPage = () => {
               fullWidth
             />
           </form>
-          <ul className={classes.container} style={{ padding: 0 }}>
+          <List className={classes.container} style={{ padding: 0 }}>
             {filtered.map((restaurant) => (
-              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+              <RestaurantItem key={restaurant._id} restaurant={restaurant} />
             ))}
-          </ul>
+          </List>
         </Grid>
       </Grid>
     </>
