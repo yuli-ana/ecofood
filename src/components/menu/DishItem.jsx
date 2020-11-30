@@ -15,7 +15,7 @@ const DishItem = ({ dish }) => {
       name: dish.name,
       price: dish.price,
       portionSize,
-      id: dish.id,
+      id: dish._id,
     };
 
     const addDish = await userService.createDish(newDish, userId);

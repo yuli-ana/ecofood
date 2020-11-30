@@ -17,6 +17,7 @@ const SignInForm = () => {
     const loginInfo = await loginUser(data);
     console.log(loginInfo);
     reset();
+    history.push("/restaurants");
   };
 
   return (

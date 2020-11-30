@@ -3,6 +3,7 @@ import { BlockReserveLoading } from "react-loadingg";
 import { List } from "@material-ui/core";
 
 const DishList = ({ data }) => {
+  console.log(data);
   return (
     <List>
       {!data ? (

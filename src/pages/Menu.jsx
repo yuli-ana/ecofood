@@ -8,6 +8,14 @@ const MenuPage = () => {
   const { id } = useParams();
   const [restaurants, setRestaurants] = useState([]);
 
+  console.log(id);
+
+  console.log(restaurants);
+  // Find restaurant that matches url id
+  const restaurantData = restaurants.find((rest) => rest._id === id);
+
+  console.log(restaurantData);
+
   useEffect(() => {
     const getData = async () => {
       const data = await restService.getAll();
@@ -16,11 +24,6 @@ const MenuPage = () => {
 
     getData();
   }, []);
-
-  // Find restaurant that matches url id
-  const restaurantData = restaurants.find((rest) => rest.id === id);
-
-  console.log(restaurantData);
 
   return (
     <>

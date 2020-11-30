@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 const RestaurantItem = ({ restaurant }) => {
   const classes = useStyles();
-  const { id, name, url } = restaurant;
+  const { _id, name, url } = restaurant;
   const firstLetter = name[0];
 
   return (
@@ -42,7 +42,7 @@ const RestaurantItem = ({ restaurant }) => {
         <Button
           fullWidth
           component={RouterLink}
-          to={`/restaurants/${id}`}
+          to={`/restaurants/${_id}`}
           color="primary"
           size="large"
         >
