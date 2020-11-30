@@ -8,7 +8,7 @@ loginRouter.post("/", async (req, res) => {
   const body = req.body;
 
   // Find user by username
-  const user = await User.findOne({ username: body.username });
+  const user = await User.findOne({ email: body.email });
 
   // Compare passwords
   const passwordCorrect =
