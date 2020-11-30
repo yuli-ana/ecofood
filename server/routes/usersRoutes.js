@@ -9,21 +9,22 @@ const User = require("../models/User");
 usersRouter.get("/", async (req, res) => {
   console.log("Succesfull request", req);
   const users = await User.find();
+  // By default returns status cose 200 success
   res.json(users);
 });
 
-// Create a new user
+// Create a new user and add to DB
 usersRouter.post("/", async (req, res) => {
   const body = req.body;
 
   const saltRound = 10;
 
-  // Store the hash of the password that is generated with the bcrypt.hash
+  // Hashed password
   const passwordHash = await bcrypt.hash(body.password, saltRound);
 
   const newUser = new User({
     ...req.body,
-    dishes: [],
+    reviews: [],
     passwordHash,
   });
 
@@ -33,17 +34,4 @@ usersRouter.post("/", async (req, res) => {
   res.json(user);
 });
 
-// usersRouter.post("/:id", async (req, res) => {
-//   const { userId } = req.params;
-//   const { size, name, price, id } = req.body;
-
-//   console.log("done");
-
-//   const user = await User.findById(userId);
-
-//   console.log(user);
-
-//   user.dishes.push();
-
-// });
 module.exports = usersRouter;

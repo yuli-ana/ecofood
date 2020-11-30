@@ -8,9 +8,10 @@ const mongoose = require("mongoose");
 // Access to env variables
 const config = require("./utils/config");
 
-// Connect to MongoDB Atlas
+// Connect server to MongoDB Atlas
 mongoose
   .connect(config.MONGODB_URI, {
+    // configs to fix deprecation warnings
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
