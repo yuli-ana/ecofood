@@ -34,7 +34,7 @@ const SignupUserPage = () => {
   const history = useHistory();
   const classes = useStyles();
   const [userId, setUserId] = useContext(Context);
-  const { register, handleSubmit, errors, reset, control } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -77,9 +77,6 @@ const SignupUserPage = () => {
               fullWidth
               className={classes.padding}
             />
-            {errors.name && errors.name.type === "required" && (
-              <div className="error">You must enter your name</div>
-            )}
             <Grid container justify="center">
               <Grid item xs={6} className={classes.padding}>
                 <InputLabel id="select-age">Age</InputLabel>

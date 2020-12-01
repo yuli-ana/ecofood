@@ -30,6 +30,7 @@ loginRouter.post("/", async (req, res) => {
   };
 
   // If password and username are valid, create a new token
+  // The token contains the username and the user id in a digitally signed form => userForToken
   const token = jwt.sign(userForToken, process.env.SECRET);
 
   res.status(200).send({ token, name: user.name });
