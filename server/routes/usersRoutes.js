@@ -13,7 +13,7 @@ usersRouter.get("/", async (req, res) => {
   res.json(users);
 });
 
-// Create a new user and add to DB
+// Create a new user
 usersRouter.post("/", async (req, res) => {
   const body = req.body;
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const RestaurantItem = ({ restaurant }) => {
+const RestaurantList = ({ restaurant }) => {
   const classes = useStyles();
   const { _id, name, url } = restaurant;
   const firstLetter = name[0];
@@ -53,4 +53,4 @@ const RestaurantItem = ({ restaurant }) => {
   );
 };
 
-export default RestaurantItem;
+export default RestaurantList;
