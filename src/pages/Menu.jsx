@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import NavBar from "../components/shared/Navbar";
-import DishList from "../components/menu/DishList";
+import MenuList from "../components/menu/MenuList";
 import restService from "../services/restaurants";
 import { useParams } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const MenuPage = () => {
       <h2 style={{ margin: "150px 0 50px", textAlign: "center" }}>
         {restaurantData?.name} Restaurant Menu
       </h2>
-      <DishList data={restaurantData} />
+      <MenuList data={restaurantData} />
     </>
   );
 };

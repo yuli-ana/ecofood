@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DishSelect = ({ portionSize, setSize }) => {
+const MenuSizeSelect = ({ portionSize, setSize }) => {
   const classes = useStyles();
 
   const handleChange = (e) => {
@@ -37,4 +37,4 @@ const DishSelect = ({ portionSize, setSize }) => {
   );
 };
 
-export default DishSelect;
+export default MenuSizeSelect;

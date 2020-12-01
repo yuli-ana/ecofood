@@ -4,7 +4,7 @@ import HomePage from "./pages/home";
 import SignInPage from "./components/signin/SignInPage";
 import SignUpPage from "./components/signup/SignUpPage";
 import SignupUserPage from "./components/signup/SignupUserPage";
-import DishModal from "./components/menu/DishModal";
+import MenuModal from "./components/menu/MenuModal";
 import SignupRestaurantPage from "./components/signup/SignupRestaurantPage";
 import MenuPage from "./pages/menu";
 import SearchRestaurantsPage from "./pages/searchRestaurants";
@@ -28,7 +28,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/modal" component={DishModal} />
+            <Route path="/modal" component={MenuModal} />
             {/* <Route exact path="/accounts/signin/:id" component={UserProfile} /> */}
             <Route path="/accounts/signin" component={SignInPage} />
             <Route
