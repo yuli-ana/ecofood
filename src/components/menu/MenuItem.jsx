@@ -1,24 +1,25 @@
 import { useState, useContext } from "react";
 import { ListItem, Button, Grid, Container } from "@material-ui/core";
 import { Context } from "../../App";
-import userService from "../../services/restaurants";
-import DishSelect from "./DishSelect";
+import userService from "../../services/users";
+import MenuSelect from "./MenuSizeSelect";
 
-const DishItem = ({ dish }) => {
+const MenuItem = ({ dish }) => {
   const [portionSize, setSize] = useState("");
   const [userId, setUserId] = useContext(Context);
 
+  // Won't work, needs update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newDish = {
+    const newReview = {
       name: dish.name,
       price: dish.price,
       portionSize,
       id: dish._id,
     };
 
-    const addDish = await userService.createDish(newDish, userId);
+    const addDish = await userService.createReview(newReview, userId);
 
     console.log(addDish);
   };
@@ -35,7 +36,7 @@ const DishItem = ({ dish }) => {
               ${dish.price}
             </Grid>
             <Grid item xs={6}>
-              <DishSelect portionSize={portionSize} setSize={setSize} />
+              <MenuSelect portionSize={portionSize} setSize={setSize} />
             </Grid>
           </Grid>
           <Grid container item xs={4} alignItems="center">
@@ -54,4 +55,4 @@ const DishItem = ({ dish }) => {
   );
 };
 
-export default DishItem;
+export default MenuItem;

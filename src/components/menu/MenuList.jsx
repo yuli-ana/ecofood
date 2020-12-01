@@ -1,8 +1,8 @@
-import DishItem from "./DishItem";
+import DishItem from "./MenuItem";
 import { BlockReserveLoading } from "react-loadingg";
 import { List } from "@material-ui/core";
 
-const DishList = ({ data }) => {
+const MenuList = ({ data }) => {
   console.log(data);
   return (
     <List>
@@ -17,4 +17,4 @@ const DishList = ({ data }) => {
   );
 };
 
-export default DishList;
+export default MenuList;
