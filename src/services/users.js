@@ -12,6 +12,11 @@ const createUser = async (newObject) => {
   return response.data;
 };
 
+const loginUser = async (credentials) => {
+  const response = await axios.post(`${baseUrl}/login`, credentials);
+  return response.data;
+};
+
 const createReview = async (newObject, id) => {
   const response = await axios.post(`${baseUrl}/${id}`, newObject);
   return response.data;
@@ -28,4 +33,11 @@ const deleteUser = async (id) => {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, createUser, createReview, update, deleteUser };
+export default {
+  getAll,
+  createUser,
+  createReview,
+  update,
+  deleteUser,
+  loginUser,
+};
