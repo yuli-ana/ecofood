@@ -12,15 +12,15 @@ const userSchema = new Schema({
   weight: { type: Number, required: true },
   height: { type: Number, required: true },
   reviews: [],
-  passwordHash: { type: String, required: true },
+  password: { type: String, required: true },
 });
 
-userSchema.pre("save", async (next) => {
+userSchema.pre("save", async function (next) {
   const user = this;
 
   if (user.isModified("password") || user.isNew) {
     try {
-      const hash = bcrypt.hash(user.password, 10);
+      const hash = await bcrypt.hash(user.password, 10);
       user.password = hash;
       return next();
     } catch (e) {
@@ -31,8 +31,11 @@ userSchema.pre("save", async (next) => {
   }
 });
 
-userSchema.methods.comparePasswords = function (password) {
-  return bcrypt.compare(password, this.password);
+userSchema.methods.comparePasswords = async function (password) {
+  console.log(password, "THIS AN INPUT PASSWORD");
+  console.log(this.password, "THIS OLD PASSWORD");
+
+  return await bcrypt.compare(password, this.password);
 };
 
 module.exports = mongoose.model("User", userSchema);
