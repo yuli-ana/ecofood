@@ -11,6 +11,4 @@ const restaurantSchema = new Schema({
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
 });
 
-const Restaurant = mongoose.model("Restaurant", restaurantSchema);
-
-module.exports = Restaurant;
+module.exports = mongoose.model("Restaurant", restaurantSchema);
