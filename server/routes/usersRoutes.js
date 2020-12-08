@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -36,10 +35,15 @@ router.route("/login").post(async (req, res, next) => {
 
   try {
     const user = await UserModel.findOne({ email });
+
+    console.log(user);
+
     if (!user) {
       next(new Error("not found"));
     } else {
       const match = await user.comparePasswords(password);
+
+      console.log(match);
 
       if (match) {
         res.json({ data: [user] });
