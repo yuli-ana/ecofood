@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const restaurantRouter = require("./routes/restaurantRoutes");
-const usersRouter = require("./routes/usersRoutes");
-const loginRouter = require("./routes/login");
+const { router: restaurantRouter } = require("./routes/restaurantRoutes");
+const { router: usersRouter } = require("./routes/usersRoutes");
 const mongoose = require("mongoose");
 // Access to env variables
 const config = require("./utils/config");
@@ -31,6 +30,5 @@ app.use(express.json());
 /* Routes */
 app.use("/api/users", usersRouter);
 app.use("/api/restaurants", restaurantRouter);
-app.use("/api/login", loginRouter);
 
 module.exports = app;

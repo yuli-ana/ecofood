@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Button, TextField, Link } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 import NavBar from "../shared/Navbar";
-import loginUser from "../../services/login";
+import userService from "../../services/users";
 // import { Link } from "react-router-dom";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+// import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useHistory } from "react-router-dom";
 
 const SignInForm = () => {
@@ -14,7 +14,7 @@ const SignInForm = () => {
   const onSubmit = async (data) => {
     console.log(data);
 
-    const loginInfo = await loginUser(data);
+    const loginInfo = await userService.loginUser(data);
     console.log(loginInfo);
     reset();
     history.push("/restaurants");

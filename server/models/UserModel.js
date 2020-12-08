@@ -11,10 +11,7 @@ const userSchema = new Schema({
   weight: { type: Number, required: true },
   height: { type: Number, required: true },
   reviews: [],
-  passwordHash: String,
+  passwordHash: { type: String, required: true },
 });
 
-const User = mongoose.model("User", userSchema);
-
-// Export mongoose model
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);

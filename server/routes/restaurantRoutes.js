@@ -1,13 +1,16 @@
 const express = require("express");
-const restaurantRouter = express.Router();
+const router = express.Router();
 
 // Restaurant mongoose model
-const Restaurant = require("../models/Restaurant");
+const { model: RestaurantModel } = require("../models/RestaurantModel");
 
 // Get all restaurants
-restaurantRouter.get("/", async (req, res) => {
-  const restaurants = await Restaurant.find();
-  res.json(restaurants);
-});
+router
+  .route("/")
+  .get(async (req, res) => {
+    const restaurants = await RestaurantModel.find();
+    res.json(restaurants);
+  })
+  .post(async (req, res) => {});
 
-module.exports = restaurantRouter;
+exports.router = router;
