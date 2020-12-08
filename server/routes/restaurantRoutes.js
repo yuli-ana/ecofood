@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Restaurant mongoose model
-const { model: RestaurantModel } = require("../models/RestaurantModel");
+const RestaurantModel = require("../models/RestaurantModel");
 
 // Get all restaurants
 router
