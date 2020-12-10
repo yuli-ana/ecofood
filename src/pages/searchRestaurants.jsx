@@ -29,6 +29,15 @@ const SearchRestaurantsPage = () => {
       const data = await restService.getAll();
       console.log("data got returned", data);
 
+      // Error handling
+      // if (response.status === 500) {
+      //   console.log("Server error");
+      // } else if (response.status === 400) {
+      //   console.log("Bad request");
+      // } else {
+      //   return response.data;
+      // }
+
       // Save restaurants in state
       setRestaurants(data);
     };
