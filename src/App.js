@@ -6,7 +6,7 @@ import SignUpPage from "./components/signup/SignUpPage";
 import SignupUserPage from "./components/signup/SignupUserPage";
 import MenuModal from "./components/menu/MenuModal";
 import SignupRestaurantPage from "./components/signup/SignupRestaurantPage";
-import MenuPage from "./pages/menu";
+import MenuPage from "./pages/Menu";
 import SearchRestaurantsPage from "./pages/searchRestaurants";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
