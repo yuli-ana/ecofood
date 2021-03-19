@@ -1,21 +1,23 @@
-import { useState } from "react";
 import { Button, TextField, Link } from "@material-ui/core";
-import { useForm, Controller } from "react-hook-form";
-import NavBar from "../shared/Navbar";
-import userService from "../../services/users";
+import { useSelector, useDispatch } from "react-redux";
+import { oauthFetch, oauthStatus } from "./signInSlice";
+import { useForm } from "react-hook-form";
 // import { Link } from "react-router-dom";
 // import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useHistory } from "react-router-dom";
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  console.log(state, "STATE");
 
-    const loginInfo = await userService.loginUser(data);
-    console.log(loginInfo);
+  const onSubmit = async (data) => {
+    if (oauthStatus === "idle") {
+      dispatch(oauthFetch(data));
+    }
     reset();
     history.push("/restaurants");
   };
