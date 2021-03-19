@@ -20,9 +20,6 @@ export const Context = createContext();
 const App = () => {
   const [userId, setUserId] = useState("");
 
-  // Log user id
-  console.log(userId, "Global userId");
-
   return (
     <Context.Provider value={[userId, setUserId]}>
       <ThemeProvider theme={theme}>

@@ -36,14 +36,10 @@ router.route("/login").post(async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email });
 
-    console.log(user);
-
     if (!user) {
-      next(new Error("not found"));
+      next(new Error("User is not found"));
     } else {
       const match = await user.comparePasswords(password);
-
-      console.log(match);
 
       if (match) {
         res.json({ data: [user] });
