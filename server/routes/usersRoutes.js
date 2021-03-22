@@ -36,7 +36,11 @@ router.route("/login").post(async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
+<<<<<<< HEAD
     const user = await AccountModel.findOne({ email });
+=======
+    const user = await UserModel.findOne({ email });
+>>>>>>> master
 
     if (!user) {
       next(new Error("User is not found"));
