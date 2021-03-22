@@ -1,3 +1,3 @@
-import oauthReducer from "../components/signin/signInSlice";
+import oauthReducer from "../components/login/signInSlice";
 
 export default oauthReducer;

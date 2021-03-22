@@ -12,12 +12,15 @@ const SignInForm = () => {
   const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
 
+  console.log(state);
+
   const onSubmit = async (data) => {
-    if (oauthStatus === "idle") {
-      dispatch(oauthFetch(data));
-    }
-    reset();
-    history.push("/restaurants");
+    dispatch(oauthFetch(data))
+      .then(() => {
+        reset();
+        history.push("/restaurants");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

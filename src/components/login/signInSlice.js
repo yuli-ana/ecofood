@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import login from "../../services/login";
+import api from "../../services/users";
 
 export const oauthFetch = createAsyncThunk(
   "oauth/oauthFetch",
   async (credentials) => {
-    const response = await login(credentials);
+    const response = await api.login(credentials);
 
-    return response;
+    return response.data;
   }
 );
 
 const initialState = {
-  user: {},
+  account: {},
   status: "idle",
   error: null,
 };
@@ -25,8 +25,9 @@ export const aouthSlice = createSlice({
       state.status = "loading";
     },
     [oauthFetch.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.status = "succeeded";
-      state.user = action.payload;
+      state.account = action.payload;
     },
     [oauthFetch.rejected]: (state, action) => {
       state.status = "failed";

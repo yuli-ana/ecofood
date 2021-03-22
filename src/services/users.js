@@ -13,6 +13,7 @@ const createUser = async (newObject) => {
 };
 
 const login = async (credentials) => {
+  console.log(credentials, "LOGIN");
   const response = await axios.post(`${baseUrl}/login`, credentials);
   return response.data;
 };

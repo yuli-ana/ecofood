@@ -3,26 +3,28 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 
 // Restaurant mongoose model
-const UserModel = require("../models/UserModel");
+const AccountModel = require("../models/AccountModel");
 
 router
   .route("/")
   // Get all users
   .get(async (req, res) => {
-    const users = await UserModel.find();
+    const users = await AccountModel.find();
     res.json(users);
   })
   // Create a new user
   // POST /api/users/
   .post(async (req, res, next) => {
     try {
-      const user = new UserModel({
+      const user = new AccountModel({
         ...req.body,
-        reviews: [],
+        role: {
+          type: "user",
+        },
       });
 
       const doc = await user.save();
-      res.status(201).json({ data: [doc] });
+      res.status(201).json({ data: doc });
     } catch (e) {
       console.log(e);
       next(e);
@@ -34,7 +36,7 @@ router.route("/login").post(async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await AccountModel.findOne({ email });
 
     if (!user) {
       next(new Error("User is not found"));
@@ -42,7 +44,7 @@ router.route("/login").post(async (req, res, next) => {
       const match = await user.comparePasswords(password);
 
       if (match) {
-        res.json({ data: [user] });
+        res.json({ data: user });
       } else {
         res.status(401).json({ message: "unauthorized client" });
       }

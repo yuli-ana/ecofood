@@ -63,9 +63,18 @@ const SignupUserPage = () => {
               className={classes.padding}
               required
               inputRef={register}
-              name="name"
+              name="first"
               variant="outlined"
-              label="Name"
+              label="First Name"
+              fullWidth
+            />
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="last"
+              variant="outlined"
+              label="Last Name"
               fullWidth
             />
             <TextField
@@ -76,7 +85,7 @@ const SignupUserPage = () => {
               fullWidth
               className={classes.padding}
             />
-            <Grid container justify="center">
+            {/* <Grid container justify="center">
               <Grid item xs={6} className={classes.padding}>
                 <InputLabel id="select-age">Age</InputLabel>
                 <Controller
@@ -117,16 +126,7 @@ const SignupUserPage = () => {
                   defaultValue=""
                 />
               </Grid>
-            </Grid>
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="phone"
-              variant="outlined"
-              label="Phone"
-              fullWidth
-            />
+            </Grid> */}
             <TextField
               className={classes.padding}
               required
@@ -136,7 +136,16 @@ const SignupUserPage = () => {
               label="Create password"
               fullWidth
             />
-            <Typography
+            <TextField
+              className={classes.padding}
+              required
+              inputRef={register}
+              name="city"
+              variant="outlined"
+              label="City"
+              fullWidth
+            />
+            {/* <Typography
               color="primary"
               variant="body1"
               className={classes.padding}
@@ -160,7 +169,7 @@ const SignupUserPage = () => {
               variant="outlined"
               label="Height"
               fullWidth
-            />
+            /> */}
             <Grid container justify="center">
               <Grid item>
                 <Button
