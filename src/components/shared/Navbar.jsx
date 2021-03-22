@@ -23,7 +23,7 @@ const NavBar = ({ signed }) => {
       <Toolbar className={classes.toolbar}>
         <NavLink path="/" text="home" />
         {!signed ? (
-          <NavLink path="/accounts/signin" text="sign in" />
+          <NavLink path="/accounts/login" text="log in" />
         ) : (
           <NavLink path="/" text="log out" />
         )}

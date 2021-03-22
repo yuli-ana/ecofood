@@ -37,7 +37,6 @@ const SignupUserPage = () => {
   const { register, handleSubmit, reset, control } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     // Create user, pass data object with user all user inputs
     const response = await userService.createUser(data);
     // Store user id in a global variable

@@ -12,8 +12,6 @@ const SignInForm = () => {
   const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
 
-  console.log(state, "STATE");
-
   const onSubmit = async (data) => {
     if (oauthStatus === "idle") {
       dispatch(oauthFetch(data));
