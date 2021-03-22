@@ -12,7 +12,6 @@ const SignInForm = () => {
   const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
 
-<<<<<<< HEAD:src/components/login/LoginForm.jsx
   console.log(state);
 
   const onSubmit = async (data) => {
@@ -22,16 +21,6 @@ const SignInForm = () => {
         history.push("/restaurants");
       })
       .catch((err) => console.log(err));
-=======
-  console.log(state, "STATE");
-
-  const onSubmit = async (data) => {
-    if (oauthStatus === "idle") {
-      dispatch(oauthFetch(data));
-    }
-    reset();
-    history.push("/restaurants");
->>>>>>> master:src/components/signin/SignInForm.jsx
   };
 
   return (
