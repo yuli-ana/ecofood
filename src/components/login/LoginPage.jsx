@@ -1,5 +1,5 @@
 import NavBar from "../shared/Navbar";
-import SignInForm from "./SignInForm";
+import SignInForm from "./LoginForm";
 import { Grid, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState, createContext } from "react";
 import HomePage from "./pages/home";
-import SignInPage from "./components/signin/SignInPage";
+import LoginPage from "./components/login/LoginPage";
 import SignUpPage from "./components/signup/SignUpPage";
 import SignupUserPage from "./components/signup/SignupUserPage";
 import MenuModal from "./components/menu/MenuModal";
@@ -26,8 +26,8 @@ const App = () => {
         <Router>
           <Switch>
             <Route path="/modal" component={MenuModal} />
-            {/* <Route exact path="/accounts/signin/:id" component={UserProfile} /> */}
-            <Route path="/accounts/signin" component={SignInPage} />
+            {/* <Route exact path="/accounts/login/:id" component={UserProfile} /> */}
+            <Route path="/accounts/login" component={LoginPage} />
             <Route
               exact
               path="/accounts/signup/restaurant"

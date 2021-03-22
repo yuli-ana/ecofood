@@ -27,7 +27,6 @@ const SearchRestaurantsPage = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await restService.getAll();
-      console.log("data got returned", data);
 
       // Error handling
       // if (response.status === 500) {
@@ -56,8 +55,6 @@ const SearchRestaurantsPage = () => {
     // Set filtered restaurants
     setFiltered(filteredByInput);
   };
-
-  console.log(filtered);
 
   return (
     <>

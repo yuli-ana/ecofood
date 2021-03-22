@@ -5,10 +5,12 @@ const { Schema } = mongoose;
 const restaurantSchema = new Schema({
   name: { type: String, required: true },
   currency: { type: String, required: true },
+  location: { type: String, required: true },
   passwordHash: String,
-  url: { type: String, required: true },
-  dishes: [],
-  users: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+  dishes: [{ type: Schema.Types.ObjectId, ref: "Dish" }],
+  reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+  account: { type: Schema.Types.ObjectId, ref: "Account" },
+  createDate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Restaurant", restaurantSchema);
