@@ -1,5 +1,5 @@
 import NavBar from "../shared/Navbar";
-import SignInForm from "./LoginForm";
+import Login from "./Login";
 import { Grid, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
@@ -41,7 +41,7 @@ const SignInPage = () => {
           <Avatar className={classes.lockIcon}>
             <LockIcon />
           </Avatar>
-          <SignInForm />
+          <Login />
         </Grid>
       </Grid>
     </Grid>

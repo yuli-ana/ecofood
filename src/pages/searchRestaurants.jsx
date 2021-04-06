@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import NavBar from "../components/shared/Navbar";
 import { makeStyles } from "@material-ui/styles";

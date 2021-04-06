@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import NavBar from "../components/shared/Navbar";
 import MenuList from "../components/menu/MenuList";
@@ -8,13 +9,8 @@ const MenuPage = () => {
   const { id } = useParams();
   const [restaurants, setRestaurants] = useState([]);
 
-  console.log(id);
-
-  console.log(restaurants);
   // Find restaurant that matches url id
   const restaurantData = restaurants.find((rest) => rest._id === id);
-
-  console.log(restaurantData);
 
   useEffect(() => {
     const getData = async () => {

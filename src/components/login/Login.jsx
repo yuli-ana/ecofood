@@ -1,18 +1,16 @@
 import { Button, TextField, Link } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { oauthFetch, oauthStatus } from "./signInSlice";
+import { oauthFetch, oauthStatus } from "../../reducers/loginSignUpSlice";
 import { useForm } from "react-hook-form";
 // import { Link } from "react-router-dom";
 // import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useHistory } from "react-router-dom";
 
-const SignInForm = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
-
-  console.log(state);
 
   const onSubmit = async (data) => {
     dispatch(oauthFetch(data))
@@ -75,4 +73,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default Login;
