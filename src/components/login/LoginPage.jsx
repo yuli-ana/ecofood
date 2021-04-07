@@ -1,8 +1,7 @@
 import NavBar from "../shared/Navbar";
 import Login from "./Login";
-import { Grid, Avatar } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import LockIcon from "@material-ui/icons/Lock";
 
 const useStyles = makeStyles({
   image: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SignInPage = () => {
+const LoginPage = () => {
   const classes = useStyles();
 
   return (
@@ -29,23 +28,11 @@ const SignInPage = () => {
           alt=""
         />
       </Grid>
-      <Grid
-        item
-        xs={6}
-        container
-        spacing={6}
-        justify="center"
-        alignContent="center"
-      >
-        <Grid item xs={10}>
-          <Avatar className={classes.lockIcon}>
-            <LockIcon />
-          </Avatar>
-          <Login />
-        </Grid>
+      <Grid container item xs={6} justify="center" alignContent="center">
+        <Login />
       </Grid>
     </Grid>
   );
 };
 
-export default SignInPage;
+export default LoginPage;

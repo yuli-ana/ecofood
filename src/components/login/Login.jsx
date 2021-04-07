@@ -1,74 +1,117 @@
-import { Button, TextField, Link } from "@material-ui/core";
+import { useState } from "react";
+import {
+  Button,
+  TextField,
+  Link,
+  LinearProgress,
+  Grid,
+} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { oauthFetch, oauthStatus } from "../../reducers/loginSignUpSlice";
-import { useForm } from "react-hook-form";
-// import { Link } from "react-router-dom";
-// import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useHistory } from "react-router-dom";
+import { useInputState } from "../../services/hooks";
+import LockIcon from "@material-ui/icons/Lock";
+
+const useStyles = makeStyles((theme) => ({
+  image: {
+    display: "block",
+    height: "100vh",
+    width: "100%",
+    objectFit: "cover",
+  },
+  lockIcon: {
+    background: "deeppink",
+    margin: " 0 auto",
+  },
+  marginBottom: {
+    marginBottom: "1.5rem",
+  },
+  marginTopBottom: {
+    marginTop: "0.5rem",
+    marginBottom: "1.5rem",
+  },
+  h1: {
+    margin: "2rem 0 3rem",
+  },
+}));
 
 const Login = () => {
+  const [email, setEmail, resetEmail] = useInputState("");
+  const [password, setPassword, resetPassword] = useInputState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { register, handleSubmit, errors, reset, control } = useForm();
   const history = useHistory();
+  const { status, error } = state || null;
+  const classes = useStyles();
 
-  const onSubmit = async (data) => {
-    dispatch(oauthFetch(data))
-      .then(() => {
-        reset();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(oauthFetch({ email, password })).then(() => {
+      if (status !== "failed" && !!error) {
+        resetEmail();
+        resetPassword();
         history.push("/restaurants");
-      })
-      .catch((err) => console.log(err));
+      }
+    });
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} action="">
-        <div>
-          <div style={{ margin: "30px 0" }}>
+      <Grid container xs={8} direction="column">
+        <Grid item>
+          <Avatar className={classes.lockIcon}>
+            <LockIcon />
+          </Avatar>
+        </Grid>
+        <Grid item>
+          <h1 className={classes.h1}>Welcome back</h1>
+        </Grid>
+        <Grid item>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <TextField
-              inputRef={register}
-              style={{ width: "100%" }}
+              className={classes.marginBottom}
+              fullWidth
+              error={!!error}
+              helperText={error}
+              onChange={setEmail}
+              value={email}
               name="email"
               label="Username"
               variant="outlined"
               color="primary"
               autoFocus
             />
-          </div>
-          <div>
+
             <TextField
-              inputRef={register}
-              style={{ width: "100%" }}
+              fullWidth
+              error={!!error}
+              helperText={error}
+              onChange={setPassword}
+              value={password}
               name="password"
               label="Password"
               variant="outlined"
             />
-          </div>
-        </div>
-        <Button
-          fullWidth
-          variant="outlined"
-          type="submit"
-          style={{
-            background: "black",
-            border: "none",
-            color: "white",
-            margin: "30px 0",
-            padding: "12px",
-          }}
-        >
-          login
-        </Button>
-      </form>
-      <Link
-        underline="hover"
-        color="primary"
-        to="/accounts/signup"
-        onClick={() => history.push("/accounts/signup")}
-      >
-        Don't have an account? Sign up
-      </Link>
+            <div className={classes.marginTopBottom}>
+              <span>New to Ecofood? </span>
+              <Link
+                underline="hover"
+                color="primary"
+                to="/accounts/signup"
+                onClick={() => history.push("/accounts/signup")}
+              >
+                Create an account
+              </Link>
+            </div>
+            <Button variant="outlined" type="submit" fullWidth>
+              login
+            </Button>
+          </form>
+        </Grid>
+      </Grid>
     </>
   );
 };
