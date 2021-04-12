@@ -12,7 +12,7 @@ export const oauthFetch = createAsyncThunk(
 
 const initialState = {
   user: {},
-  status: "idle",
+  status: "",
   error: null,
 };
 
@@ -22,14 +22,14 @@ export const aouthSlice = createSlice({
   reducer: {},
   extraReducers: {
     [oauthFetch.pending]: (state) => {
-      state.status = "loading";
+      state.status = "pending";
     },
     [oauthFetch.fulfilled]: (state, action) => {
-      state.status = "succeeded";
+      state.status = "fulfilled";
       state.user = action.payload;
     },
     [oauthFetch.rejected]: (state, action) => {
-      state.status = "failed";
+      state.status = "rejected";
       state.error = action.error.message;
     },
   },
