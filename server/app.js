@@ -2,11 +2,27 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const { router: restaurantRouter } = require("./routes/restaurantRoutes");
-const { router: usersRouter } = require("./routes/usersRoutes");
+const cookieParser = require("cookie-parser");
+
+const accountRouter = require("./routes/accounts/accountRoutes");
+const restaurantRouter = require("./routes/restaurants/restaurantRoutes");
+const usersRouter = require("./routes/users/usersRoutes");
 const mongoose = require("mongoose");
 // Access to env variables
 const config = require("./utils/config");
+
+/* Configurations */
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+// Express middleware that transforms all requests to a JS object and assigns it to body property on the request
+
+/* Routes */
+app.use("/api/account", accountRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/restaurants", restaurantRouter);
+app.use("/", express.static(path.join(__dirname, "../build")));
 
 // Connect server to MongoDB Atlas
 mongoose
@@ -22,16 +38,6 @@ mongoose
   .catch((error) => {
     console.log("error connecting to MongoDB:", error.message);
   });
-
-/* Configurations */
-app.use(cors());
-// Express middleware that transforms all requests to a JS object and assigns it to body property on the request
-app.use(express.json());
-
-/* Routes */
-app.use("/api/users", usersRouter);
-app.use("/api/restaurants", restaurantRouter);
-app.use("/", express.static(path.join(__dirname, "../build")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("./build"));
