@@ -1,20 +1,11 @@
-import { useContext } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useHistory } from "react-router-dom";
-import {
-  Button,
-  TextField,
-  Typography,
-  Select,
-  InputLabel,
-  MenuItem,
-  Grid,
-} from "@material-ui/core";
+import { Button, TextField, Grid } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useForm, Controller } from "react-hook-form";
-import userService from "../../services/users";
-import { Context } from "../../App";
-import NavBar from "../shared/Navbar";
+import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { signUpFetch } from "../../reducers/signUpUserSlice";
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -31,25 +22,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignupUserPage = () => {
+  const dispatch = useDispatch();
+  const { register, handleSubmit, reset, control } = useForm();
   const history = useHistory();
   const classes = useStyles();
-  const [userId, setUserId] = useContext(Context);
-  const { register, handleSubmit, reset, control } = useForm();
 
   const onSubmit = async (data) => {
-    // Create user, pass data object with user all user inputs
-    const response = await userService.createUser(data);
-    // Store user id in a global variable
-    setUserId(response._id);
-    // Clear all inputs after form submit
-    reset();
-    // Programatically update url
-    history.push("/restaurants");
+    try {
+      const resultAction = await dispatch(
+        signUpFetch({ ...data, role: { type: "user" } })
+      );
+      const response = unwrapResult(resultAction);
+      console.log(response, "SIGN UP RESPONSE");
+    } catch (err) {}
   };
 
   return (
     <>
-      <NavBar />
       <Grid
         container
         justify="center"
@@ -63,7 +52,7 @@ const SignupUserPage = () => {
               className={classes.padding}
               required
               inputRef={register}
-              name="first"
+              name="firstName"
               variant="outlined"
               label="First Name"
               fullWidth
@@ -72,7 +61,7 @@ const SignupUserPage = () => {
               className={classes.padding}
               required
               inputRef={register}
-              name="last"
+              name="lastName"
               variant="outlined"
               label="Last Name"
               fullWidth
@@ -85,48 +74,6 @@ const SignupUserPage = () => {
               fullWidth
               className={classes.padding}
             />
-            {/* <Grid container justify="center">
-              <Grid item xs={6} className={classes.padding}>
-                <InputLabel id="select-age">Age</InputLabel>
-                <Controller
-                  as={
-                    <Select labelId="select-age" fullWidth>
-                      <MenuItem value={18}>18</MenuItem>
-                      <MenuItem value={19}>19</MenuItem>
-                      <MenuItem value={20}>20</MenuItem>
-                      <MenuItem value={21}>21</MenuItem>
-                      <MenuItem value={22}>22</MenuItem>
-                      <MenuItem value={23}>23</MenuItem>
-                      <MenuItem value={24}>24</MenuItem>
-                      <MenuItem value={25}>25</MenuItem>
-                      <MenuItem value={26}>26</MenuItem>
-                      <MenuItem value={27}>27</MenuItem>
-                      <MenuItem value={28}>28</MenuItem>
-                      <MenuItem value={29}>29</MenuItem>
-                      <MenuItem value={30}>30</MenuItem>
-                    </Select>
-                  }
-                  name="age"
-                  control={control}
-                  defaultValue=""
-                />
-              </Grid>
-              <Grid item xs={6} className={classes.padding}>
-                <InputLabel id="select-gender">Sex</InputLabel>
-                <Controller
-                  as={
-                    <Select labelId="Sex" fullWidth>
-                      <MenuItem value={"female"}>Female</MenuItem>
-                      <MenuItem value={"male"}>Male</MenuItem>
-                      <MenuItem value={"other"}>Other</MenuItem>
-                    </Select>
-                  }
-                  name="sex"
-                  control={control}
-                  defaultValue=""
-                />
-              </Grid>
-            </Grid> */}
             <TextField
               className={classes.padding}
               required
@@ -145,31 +92,6 @@ const SignupUserPage = () => {
               label="City"
               fullWidth
             />
-            {/* <Typography
-              color="primary"
-              variant="body1"
-              className={classes.padding}
-            >
-              Additional Information
-            </Typography>
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="weight"
-              variant="outlined"
-              label="Weight"
-              fullWidth
-            />
-            <TextField
-              className={classes.padding}
-              required
-              inputRef={register}
-              name="height"
-              variant="outlined"
-              label="Height"
-              fullWidth
-            /> */}
             <Grid container justify="center">
               <Grid item>
                 <Button
