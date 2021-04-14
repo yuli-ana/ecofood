@@ -4,7 +4,11 @@ const {
   findAccountByEmail,
   findAccountById,
 } = require("./accountController");
-const { createToken } = require("../../token/tokenService");
+const {
+  createToken,
+  createRefreshedToken,
+  deleteRefreshToken,
+} = require("../../token/tokenService");
 const { verifyToken } = require("../../middleware/verifyToken");
 
 const router = express.Router();
@@ -80,12 +84,54 @@ router.route("/login").post(async (req, res) => {
       return;
     }
 
-    const token = createToken({ id: account?._id });
+    const { token, refreshToken } = createToken({ id: account?._id });
+
     res.cookie("token", token);
+    res.cookie("refreshToken", refreshToken);
     res.status(200).json({ message: "logged in" });
   } catch (ex) {
     console.log(ex);
     res.status(500).json({ message: "internal server error" });
+  }
+});
+
+router.route("/token", async (req, res, next) => {
+  const { email, refreshToken } = req.body;
+
+  try {
+    const account = await findAccountByEmail(email);
+    const token = createRefreshedToken({ id: account?._id }, refreshToken);
+
+    if (!token) {
+      res.send(401);
+    }
+
+    res.cookie("token", `JWT ${token}`);
+    res.json({ message: "New refreshed token accessed" });
+  } catch (ex) {
+    console.log(ex);
+    res
+      .status(500)
+      .json({ message: "email and refreshToken must be provided" });
+  }
+});
+
+router.route("token/reject", async (req, res, next) => {
+  const refreshToken = req.body.refreshToken;
+
+  try {
+    const isTokenDeleted = deleteRefreshToken(refreshToken);
+
+    if (!isTokenDeleted) {
+      res.send(401);
+    }
+
+    res.send(204);
+  } catch (ex) {
+    console.log(ex);
+    res
+      .status(500)
+      .json({ message: "email and refreshToken must be provided" });
   }
 });
 
