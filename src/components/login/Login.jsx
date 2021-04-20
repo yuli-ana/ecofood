@@ -1,18 +1,14 @@
-import { useState } from "react";
-import {
-  Button,
-  TextField,
-  Link,
-  LinearProgress,
-  Grid,
-} from "@material-ui/core";
+import { useState, useContext } from "react";
+import { Button, TextField, Link, Grid } from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { oauthFetch, oauthStatus } from "../../reducers/loginSignUpSlice";
+import { loginFetch } from "../../reducers/loginAccountSlice";
 import { useHistory } from "react-router-dom";
 import { useInputState } from "../../services/hooks";
 import LockIcon from "@material-ui/icons/Lock";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { AuthContext } from "../../services/context/authContext";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -23,17 +19,17 @@ const useStyles = makeStyles((theme) => ({
   },
   lockIcon: {
     background: "deeppink",
-    margin: " 0 auto",
+    margin: "0 auto",
   },
   marginBottom: {
     marginBottom: "1.5rem",
   },
   marginTopBottom: {
     marginTop: "0.5rem",
-    marginBottom: "1.5rem",
+    marginBottom: "2.2rem",
   },
   h1: {
-    margin: "2rem 0 3rem",
+    margin: "3rem 0 3rem",
   },
 }));
 
@@ -41,26 +37,27 @@ const Login = () => {
   const [email, setEmail, resetEmail] = useInputState("");
   const [password, setPassword, resetPassword] = useInputState("");
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const { error } = useSelector((state) => state.account);
   const history = useHistory();
-  const { status, error } = state || null;
   const classes = useStyles();
+  const { setAuthData } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(oauthFetch({ email, password })).then(() => {
-      if (status !== "failed" && !!error) {
-        resetEmail();
-        resetPassword();
-        history.push("/restaurants");
-      }
-    });
+    try {
+      const resultAction = await dispatch(loginFetch({ email, password }));
+      const userData = unwrapResult(resultAction);
+      setAuthData(userData);
+      history.push("/restaurants");
+    } catch (err) {
+      console.log(err, "ERR");
+    }
   };
 
   return (
     <>
-      <Grid container xs={8} direction="column">
+      <Grid container item xs={8} direction="column">
         <Grid item>
           <Avatar className={classes.lockIcon}>
             <LockIcon />
@@ -70,25 +67,23 @@ const Login = () => {
           <h1 className={classes.h1}>Welcome back</h1>
         </Grid>
         <Grid item>
-          <form onSubmit={(e) => handleSubmit(e)}>
+          <form onSubmit={handleSubmit}>
             <TextField
+              required
               className={classes.marginBottom}
               fullWidth
               error={!!error}
-              helperText={error}
               onChange={setEmail}
               value={email}
               name="email"
-              label="Username"
+              label="Email"
               variant="outlined"
               color="primary"
-              autoFocus
             />
-
             <TextField
+              required
               fullWidth
               error={!!error}
-              helperText={error}
               onChange={setPassword}
               value={password}
               name="password"
@@ -98,15 +93,23 @@ const Login = () => {
             <div className={classes.marginTopBottom}>
               <span>New to Ecofood? </span>
               <Link
+                component="button"
+                variant="subtitle1"
                 underline="hover"
                 color="primary"
-                to="/accounts/signup"
+                // to="/accounts/signup"
                 onClick={() => history.push("/accounts/signup")}
               >
                 Create an account
               </Link>
             </div>
-            <Button variant="outlined" type="submit" fullWidth>
+            <Button
+              variant="contained"
+              type="submit"
+              size="large"
+              fullWidth
+              color="primary"
+            >
               login
             </Button>
           </form>
