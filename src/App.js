@@ -9,6 +9,7 @@ import SignupRestaurantPage from "./components/signup/SignupRestaurantPage";
 import MenuPage from "./pages/Menu";
 import SearchRestaurantsPage from "./pages/searchRestaurants";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import PrivateRoute from "./components/PrivateRoute";
 
 const theme = createMuiTheme({
   spacing: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 16, 32, 64],
@@ -36,7 +37,10 @@ const App = () => {
             <Route path="/accounts/signup/user" component={SignupUserPage} />
             <Route path="/accounts/signup" component={SignUpPage} />
             <Route exact path="/restaurants/:id" component={MenuPage} />
-            <Route path="/restaurants" component={SearchRestaurantsPage} />
+            <PrivateRoute
+              path="/restaurants"
+              component={SearchRestaurantsPage}
+            />
             <Route path="/" component={HomePage} />
           </Switch>
         </Router>
