@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./custom-axios";
 
 const baseUrl = "/api/restaurants";
 
